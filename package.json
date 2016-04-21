@@ -1,0 +1,27 @@
+{
+  "name": "wcntonline",
+  "version": "1.0.0",
+  "description": "Wcnt online project mangagment system.",
+  "main": "app.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "George Barnes",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.0",
+    "client-sessions": "^0.7.0",
+    "cookie-parser": "^1.4.1",
+    "csurf": "^1.8.3",
+    "mongoose": "^4.4.12",
+    "passport": "^0.3.2"
+  }
+}
