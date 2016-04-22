@@ -5,7 +5,15 @@ block vars
   - var title = 'Admin Dashboard'
 
 block nav
-  ul.nav.navbar-nav.navbar-right
+  #navbar.navbar-collapse.collapse
+    ul.nav.navbar-nav
+      li 
+        a(href='/adminDashboard') Admin Dashboard
+      li
+        a(href='/Register') Register Contractor
+      li
+        a(href='/createProject') Creat Project
+    ul.nav.navbar-nav.navbar-right
       li
         a(href='/logout') Log Out
 block content

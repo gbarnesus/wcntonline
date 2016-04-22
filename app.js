@@ -19,8 +19,36 @@ var express = require('express'),
       lastName: String,
       email: {type: String, unique: true},
       password: String,
+      company: String,
       admin: String,
     }));
+    var Project = mongoose.model('Project', new Schema({
+      id: ObjectId,
+      projectInfo: {
+            name: String,
+            number: {type: String, unique: true},
+            address: String,
+            city: String,
+            state: String,
+            zip: String,
+          },
+          projectTeam: {
+            projectManager: {
+              name: String,
+              email: String,
+              phone: String
+          },
+            projectSuperindendent: {
+              name: String,
+              email: String,
+              phone: String
+            }
+          },
+          subcontractor: String
+
+
+    }));
+
 //connect to mongo
 mongoose.connect('mongodb://localhost/wcntOnline');
 // configure express
@@ -45,13 +73,10 @@ mongoose.connect('mongodb://localhost/wcntOnline');
  app.use(csrf());
 
   app.use(function(req, res, next){
-    console.log(req.session.user)
-    console.log(req.admin.user)
   if (req.session && req.session.user) {
     User.findOne({email: req.session.user.email}, function(err, user){
       if(user) {
         req.user = user;
-
         delete req.user.password;
         req.session.user = req.user;
         res.locals.user = req.user;
@@ -62,6 +87,25 @@ mongoose.connect('mongodb://localhost/wcntOnline');
     next();
   }
 });
+app.use(function(req, res, next){
+if (req.admin && req.admin.user) {
+  User.findOne({email: req.admin.user.email}, function(err, user){
+    if(user) {
+      req.admin = user;
+      delete req.admin.password;
+      req.admin.user = req.admin;
+      res.locals.user = req.admin;
+      req.user = user;
+      delete req.user.password;
+      req.session.user = req.user;
+      res.locals.user = req.user;
+    }
+    next();
+  });
+} else {
+  next();
+}
+});
 function requireLogin(req, res, next){
   if (!req.user){
 
@@ -71,7 +115,7 @@ function requireLogin(req, res, next){
   };
 };
 function requireAdminLogin(req, res, next){
-  if (!req.admin.user){
+  if (!req.admin){
     res.redirect('/login')
   } else {
     next();
@@ -116,8 +160,11 @@ function requireAdminLogin(req, res, next){
     app.get('/adminDashboard', requireAdminLogin, function(req, res){
       res.render('adminDashboard', {csrfToken: req.csrfToken()});
     })
-    app.get('/register', function(req, res){
+    app.get('/register', requireAdminLogin, function(req, res){
       res.render('register', {csrfToken: req.csrfToken()});
+    })
+    app.get('/createProject', requireAdminLogin, function(req, res){
+      res.render('createProject', {csrfToken: req.csrfToken()});
     })
 
 
@@ -153,6 +200,7 @@ app.post('/register', function(req, res){
     lastName : req.body.lastName,
     email : req.body.email,
     admin: req.body.admin,
+    company: req.body.company,
     password : hash
   });
   user.save(function(err){
@@ -163,7 +211,43 @@ app.post('/register', function(req, res){
     }
     res.render('register.jade', {error: error});
   }
-  res.redirect('/dashboard');
+  res.redirect('/adminDashboard');
+})
+});
+app.post('/createProject', function(req, res){
+
+  var project = new Project({
+    projectInfo: {
+      name: req.body.projectName,
+      number: req.body.projectNumber,
+      address: req.body.projectAddress,
+      city: req.body.projectCity,
+      state: req.body.projectState,
+      zip: req.body.projectZip
+    },
+    projectTeam: {
+      projectManager: {
+        name: req.body.projectManager,
+        email: req.body.managerEmail,
+        phone: req.body.managerPhone
+    },
+      projectSuperindendent: {
+        name: req.body.projectSuper,
+        email: req.body.superEmail,
+        phone: req.body.superPhone
+      }
+    },
+    subcontractor: req.body.subcontractor
+  });
+  project.save(function(err){
+  if(err){
+    var err = "something bad happend! Try Again!"
+    if (err === 11000) {
+      var error = "that project number is allready in use"
+    }
+    res.render('register.jade', {error: error});
+  }
+  res.redirect('/adminDashboard');
 })
 });
 
