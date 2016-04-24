@@ -31,7 +31,8 @@ block content
             th Phone
           for project in projects
             tr
-              td #{project.projectInfo.name}
+              td 
+                a(href='/projectDash/'+project.projectInfo.number) #{project.projectInfo.name}
               td #{project.projectInfo.number}
               td #{project.projectInfo.address}
               td #{project.projectInfo.city}
@@ -44,8 +45,6 @@ block content
               td #{project.projectTeam.projectSuperindendent.email}
               td #{project.projectTeam.projectSuperindendent.phone}
 
-        p
-          a.btn.btn-lg.btn-primary(href='/projectDash', role='button') Project Dashboard »
     // /container
     //
       Bootstrap core JavaScript
