@@ -72,8 +72,11 @@ block content
     br
     
     span Subcontrators: 
-    input(type="text", name="subcontractor", required=true)
-    br
+    
+    select(name='subcontractor', multiple='')
+      for user in users
+        option(value=user.email) #{user.email} (#{user.company})
+        br
     
     
 
