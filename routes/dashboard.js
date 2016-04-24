@@ -1,9 +1,16 @@
 var express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    Projects = require(__dirname + '/../models/project.js');
 
 
 router.get('/', function(req, res, next){
-  res.render("dashboard")
+
+  Projects.find({}, function(err, project){
+
+    res.render("dashboard" ,{projects: project})
+  });
+
+
 });
 
 module.exports = router;

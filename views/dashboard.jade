@@ -15,9 +15,35 @@ block content
       // Main component for a primary marketing message or call to action
       .jumbotron
         h1 Dashboard
-        p
-          | This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.
-        p To see the difference between static and fixed top navbars, just scroll.
+        table(style='width:100%' border='1')
+          tr
+            th Project Name
+            th Project Number
+            th address
+            th city
+            th state
+            th zip
+            th Project Manager 
+            th Email 
+            th Phone
+            th Project Superintendent
+            th Email 
+            th Phone
+          for project in projects
+            tr
+              td #{project.projectInfo.name}
+              td #{project.projectInfo.number}
+              td #{project.projectInfo.address}
+              td #{project.projectInfo.city}
+              td #{project.projectInfo.state}
+              td #{project.projectInfo.zip}
+              td #{project.projectTeam.projectManager.name}
+              td #{project.projectTeam.projectManager.email}
+              td #{project.projectTeam.projectManager.phone}
+              td #{project.projectTeam.projectSuperindendent.name}
+              td #{project.projectTeam.projectSuperindendent.email}
+              td #{project.projectTeam.projectSuperindendent.phone}
+
         p
           a.btn.btn-lg.btn-primary(href='/projectDash', role='button') Project Dashboard »
     // /container
