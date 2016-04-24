@@ -1,0 +1,66 @@
+extends ./maintemplate.jade
+
+block vars
+  - var title = 'UploadDocument'
+block nav
+    #navbar.navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li 
+          a(href='/adminDashboard') Admin Dashboard
+        li
+          a(href='/Register') Register Contractor
+        li
+          a(href='/createProject') Create Project
+        li
+          a(href='/uploadDocument') Upload Document
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='/logout') Log Out
+block content
+  h1 Upload Document
+
+  if error
+    p ERROR: #{error}
+  h2 Upload rfi
+  form(method="post")
+    input(type="hidden", name="_csrf", value=csrfToken)
+    
+    Span Project Name:
+    select(name='projectName', multiple='')
+      for project in allProjects
+        option(value=project.projectInfo.name) #{project.projectInfo.name}
+        br
+    span Submittal Number:
+    input(type="text", name="submittalNumber", required=true)
+    br
+
+    span Submittal Subject:
+    input(type="text", name="submittalSubject", required=true)
+    br
+
+    span Specification Section: 
+    input(type="text", name="sumittalSpecification", required=true)
+    br
+
+    span Responsible Contractor:
+    input(type="text", name="responsibleContractor", required=true)
+    br
+
+    span  Status:
+    input(type="text", name="submittalStatus", required=true)
+    br
+    
+    span Reviewer: 
+    input(type="text", name="reviewer", required=true)
+    br
+    
+    span Review Date: 
+    input(type="text", name="reviewDate", required=true)
+    br
+     
+    span Review Code: 
+    input(type="text", name="reviewCode", required=true)
+    br
+    
+
+    input(type="submit")
