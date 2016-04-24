@@ -1,4 +1,4 @@
-'use-strict'
+'use-strict';
 
 var express = require('express'),
     app = express(),
@@ -7,7 +7,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+    ObjectId = Schema.ObjectId,
     sessions = require('client-sessions'),
     bcrypt = require('bcryptjs'),
     csrf = require('csurf'),
@@ -29,7 +29,10 @@ var homePage = require('./routes/index'),
     register = require('./routes/register'),
     projectDocs = require('./routes/projectDocs'),
     adminDashboard = require('./routes/adminDashboard'),
-    createProject = require('./routes/createProject');
+    createProject = require('./routes/createProject'),
+    uploadRFI = require('./routes/uploadRFI'),
+    uploadSubmittal = require('./routes/uploadSubmittal'),
+    uploadPunchListItem = require('./routes/uploadPunchListItem')
 
 //connect to mongo
 mongoose.connect('mongodb://localhost/wcntOnline');
@@ -43,14 +46,14 @@ mongoose.connect('mongodb://localhost/wcntOnline');
       cookieName: 'session',
       secret: 'asdklfja329048689yhfsdmnsdlkfj9342!!^$#@',
       duration: 30 * 60 * 1000,
-      activeDuration: 5 * 60 * 1000,
+      activeDuration: 5 * 60 * 1000
     }));
 
     app.use(sessions({
       cookieName: 'admin',
       secret: 'sdfgsdjgsdfsdr4356gdfgdfg',
       duration: 30 * 60 * 1000,
-      activeDuration: 5 * 60 * 1000,
+      activeDuration: 5 * 60 * 1000
     }));
 
     app.use(logger('dev'));
@@ -88,18 +91,18 @@ mongoose.connect('mongodb://localhost/wcntOnline');
       });
     } else {
       next();
-    }
+    };
     });
     function requireLogin(req, res, next){
       if (!req.user){
-      res.redirect('/login' )
+      res.redirect('/login' );
       } else {
           next();
         };
     };
     function requireAdminLogin(req, res, next){
       if (!req.admin){
-        res.redirect('/login')
+        res.redirect('/login');
       } else {
         next();
       };
@@ -118,6 +121,9 @@ mongoose.connect('mongodb://localhost/wcntOnline');
    app.use('/adminDashboard', requireAdminLogin, adminDashboard);
    app.use('/register', requireAdminLogin, register);
    app.use('/createProject', requireAdminLogin, createProject);
+   app.use('/uploadRFI', requireAdminLogin, uploadRFI);
+   app.use('/uploadSubmittal', requireAdminLogin, uploadSubmittal);
+   app.use('/uploadPunchListItem', requireAdminLogin, uploadPunchListItem);
 
 
     app.listen(3000, function(){

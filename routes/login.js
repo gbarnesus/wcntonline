@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router();
-    User = require(__dirname + '/../models/user.js');
+    User = require(__dirname + '/../models/user.js'),
+    bcrypt = require('bcryptjs');
 
 router.get('/', function(req, res, next){
     res.render("login", {csrfToken: req.csrfToken()});
