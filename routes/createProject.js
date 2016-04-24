@@ -29,7 +29,10 @@ router.post('/', function(req, res, next){
         phone: req.body.superPhone
       }
     },
-    subcontractor: req.body.subcontractor
+    subcontractor: req.body.subcontractor,
+    rfiData: [],
+    submittals: [],
+    punchlist: []
   });
   project.save(function(err){
   if(err){
