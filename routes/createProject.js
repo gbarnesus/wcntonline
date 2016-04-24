@@ -1,10 +1,15 @@
 var express = require('express'),
     router = express.Router();
-        Project = require(__dirname + '/../models/project.js');
+    Project = require(__dirname + '/../models/project.js'),
+    User = require(__dirname + '/../models/user.js');
 
 
 router.get('/', function(req, res, next){
-  res.render('createProject', {csrfToken: req.csrfToken()});
+  User.find({}, function(err, user){
+
+      res.render('createProject', {csrfToken: req.csrfToken(), users: user});
+  });
+
 });
 
 router.post('/', function(req, res, next){
