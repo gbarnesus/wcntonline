@@ -1,10 +1,12 @@
 var express = require('express'),
     router = express.Router(),
-    Projects = require(__dirname + '/../models/project.js');
+    Projects = require(__dirname + '/../models/project.js'),
+    allProjects;
 
 
 router.get('/', function(req, res){
   Projects.find({}, function(err, projects){
+    allProjects = projects
     res.render('uploadPunchListItem', {csrfToken: req.csrfToken(), allProjects : projects});
   })
 
@@ -21,16 +23,17 @@ router.post('/', function(req, res){
     punchStatus: req.body.punchStatus,
 
   }
-  console.log(req.body.projectName)
+
   Projects.update({"projectInfo.name": req.body.projectName}, {$push: {"punchlist" : punchListItem}}, function(err, project){
+    var status;
     if(err){
-      var err = "something bad happend! Try Again!"
-      if (err === 11000) {
-        var error = "that email is allready in use"
+      status = "Something bad happend! Try Again!"
+      res.render("uploadStatus", {status: status, link: "/uploadPunchListItem"});
       }
-    res.render("uploadPunchList", {error: error, allProjects: "please refresh", csrfToken: req.csrfToken()});
-  }
-  res.redirect("/uploadPunchListItem");
+
+
+  status = "Punch List Item Created"
+  res.render("uploadStatus", {status: status, link: "/uploadPunchListItem"});
   });
 });
 

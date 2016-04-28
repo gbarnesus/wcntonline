@@ -24,14 +24,16 @@ router.post('/', function(req, res){
   }
   console.log(req.body.projectName)
   Projects.update({"projectInfo.name": req.body.projectName}, {$push: {"rfiData" : rfi}}, function(err, project){
+    var status;
     if(err){
-      var err = "something bad happend! Try Again!"
-      if (err === 11000) {
-        var error = "that email is allready in use"
+      status = "Something bad happend! Try Again!"
+      res.render("uploadStatus", {status: status, link: "/uploadPunchListItem"});
       }
-    res.render("uploadRFI", {error: error, allProjects: "please refresh", csrfToken: req.csrfToken()});
-  }
-  res.redirect("/uploadRFI");
+
+
+  status = "RFI Created"
+  res.render("uploadStatus", {status: status, link: "/uploadPunchListItem"});
+
   });
 });
 
