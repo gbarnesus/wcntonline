@@ -9,23 +9,28 @@ block content
     .container
       // Main component for a primary marketing message or call to action
       .jumbotron
-        h1 Punchlist
+        h1 Submittals
         table(style='width:100%' border='1')
           tr
-            th Item Number
-            th Description
+            th Submittal Number
+            th Subject
+            th Specification
             th Responsible Contractor
-            th Creation Date
-            th Due Date
-            th Status
-          for punchlist in punchlists
+            th Submittal Status
+            th Reviewer
+            th Review Date
+            th Review Code
+          for submittal in submittals
             tr  
-              td #{punchlist.itemNumber}
-              td #{punchlist.punchDescription}
-              td #{punchlist.responsibleContractor}
-              td #{punchlist.creationDate}
-              td #{punchlist.dueDate}
-              td #{punchlist.punchStatus}
+              td #{submittal.submittalNumber}
+              td #{submittal.submittalSubject}
+              td #{submittal.submittalSpecification}
+              td #{submittal.responsibleContractor}
+              td #{submittal.submittalStatus}
+              td #{submittal.reviewer}
+              td #{submittal.reviewDate}
+              td #{submittal.reviewCode}
+            
     // /container
     //
       Bootstrap core JavaScript
