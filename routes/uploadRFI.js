@@ -27,12 +27,12 @@ router.post('/', function(req, res){
     var status;
     if(err){
       status = "Something bad happend! Try Again!"
-      res.render("uploadStatus", {status: status, link: "/uploadPunchListItem"});
+      res.render("uploadStatus", {status: status, link: "/uploadRFI"});
       }
 
 
   status = "RFI Created"
-  res.render("uploadStatus", {status: status, link: "/uploadPunchListItem"});
+  res.render("uploadStatus", {status: status, link: "/uploadRFI"});
 
   });
 });

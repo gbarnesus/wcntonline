@@ -40,15 +40,21 @@ router.post('/', function(req, res, next){
     punchlist: []
   });
   project.save(function(err){
-  if(err){
-    var err = "something bad happend! Try Again!"
-    if (err === 11000) {
-      var error = "that project number is allready in use"
+    var status;
+    if(err){
+      status = "Something bad happend! Try Again!"
+      if (err.code === 11000) {
+      status = "That Project Number is in use Allready"
+
+
+      }
+      res.render("uploadStatus", {status: status, link: "/createProject"})
+    } else {
+
+      status = "Project Created"
+      res.render("uploadStatus", {status: status, link: "/createProject"});
     }
-    res.render('register.jade', {error: error});
-  }
-  res.redirect('/adminDashboard');
-  })
+      });
 });
 
 module.exports = router;

@@ -1,69 +1,60 @@
-extends ./maintemplate.jade
+extends ./adminTemplate.jade
 
 block vars
-  - var title = 'UploadDocument'
-block nav
-    #navbar.navbar-collapse.collapse
-      ul.nav.navbar-nav
-        li 
-          a(href='/adminDashboard') Admin Dashboard
-        li
-          a(href='/Register') Register Contractor
-        li
-          a(href='/createProject') Create Project
-        li
-          a(href='/uploadDocument') Upload Document
-      ul.nav.navbar-nav.navbar-right
-        li
-          a(href='/logout') Log Out
+
+  - var title = 'Admin Dashboard'
+
+
 block content
-  h1 Upload Document
+    .container
+      // Main component for a primary marketing message or call to action
+      .jumbotron
+        h1 Upload RFI
 
-  if error
-    p ERROR: #{error}
-  h2 Upload rfi
-  form(method="post")
-    input(type="hidden", name="_csrf", value=csrfToken)
-    
-    Span Project Name:
-    select(name='projectName', multiple='')
-      for project in allProjects
-        option(value=project.projectInfo.name) #{project.projectInfo.name}
-        br
-    span RFI Name: 
-    input(type="text", name="rfiName", required=true)
-    br
+        if error
+          p ERROR: #{error}
+        form(method="post")
+          input(type="hidden", name="_csrf", value=csrfToken)
+          
+          Span Project Name:
+          select(name='projectName')
+            for project in allProjects
+              option(value=project.projectInfo.name) #{project.projectInfo.name}
+          br
+          span RFI Name: 
+          input(type="text", name="rfiName", required=true)
+          br
 
-    span RFI Subject: 
-    input(type="text", name="rfiSubject", required=true)
-    br
+          span RFI Subject: 
+          input(type="text", name="rfiSubject", required=true)
+          br
 
-    span Responsible Contractor: 
-    input(type="text", name="responsibleContractor", required=true)
-    br
+          span Responsible Contractor: 
+          input(type="text", name="responsibleContractor", required=true)
+          br
 
-    span Assignee:
-    input(type="text", name="assignee", required=true)
-    br
+          span Assignee:
+          input(type="text", name="assignee", required=true)
+          br
 
-    span Date Initiated 
-    input(type="text", name="dateInitiated", required=true)
-    br
-    
-    span Due Date: 
-    input(type="text", name="dueDate", required=true)
-    br
-    
-    span Ball in Court: 
-    input(type="text", name="ballInCourt", required=true)
-    br
-     
-    span Schedule Impact: 
-    input(type="text", name="scheduleImpact", required=true)
-    br
-    
-    span Cost Impact: 
-    input(type="text", name="costImpact", required=true)
-    br    
+          span Date Initiated 
+          input(type="text", name="dateInitiated", required=true)
+          br
+          
+          span Due Date: 
+          input(type="text", name="dueDate", required=true)
+          br
+          
+          span Ball in Court: 
+          input(type="text", name="ballInCourt", required=true)
+          br
+           
+          span Schedule Impact: 
+          input(type="text", name="scheduleImpact", required=true)
+          br
+          
+          span Cost Impact: 
+          input(type="text", name="costImpact", required=true)
+          br    
 
-    input(type="submit")
+          input(type="submit")

@@ -1,85 +1,76 @@
-extends ./maintemplate.jade
+extends ./adminTemplate.jade
 
 block vars
-  - var title = 'Register'
-block nav
-    #navbar.navbar-collapse.collapse
-      ul.nav.navbar-nav
-        li 
-          a(href='/adminDashboard') Admin Dashboard
-        li
-          a(href='/Register') Register Contractor
-        li
-          a(href='/createProject') Create Project
-        li
-          a(href='/uploadDocument') Upload Document
-      ul.nav.navbar-nav.navbar-right
-        li
-          a(href='/logout') Log Out
+
+  - var title = 'Create Project'
+
 block content
-  h1 Create a Project
+    .container
+      // Main component for a primary marketing message or call to action
+      .jumbotron
+        h1 Create a Project
 
-  if error
-    p ERROR: #{error}
+        if error
+          p ERROR: #{error}
 
-  form(method="post")
-    input(type="hidden", name="_csrf", value=csrfToken)
+        form(method="post")
+          input(type="hidden", name="_csrf", value=csrfToken)
 
-    span Project Name: 
-    input(type="text", name="projectName", required=true)
-    br
+          span Project Name: 
+          input(type="text", name="projectName", required=true)
+          br
 
-    span Project Number: 
-    input(type="text", name="projectNumber", required=true)
-    br
+          span Project Number: 
+          input(type="text", name="projectNumber", required=true)
+          br
 
-    span Project Address: 
-    input(type="text", name="projectAddress", required=true)
-    br
+          span Project Address: 
+          input(type="text", name="projectAddress", required=true)
+          br
 
-    span City: 
-    input(type="text", name="projectCity", required=true)
-    br
+          span City: 
+          input(type="text", name="projectCity", required=true)
+          br
 
-    span State: 
-    input(type="text", name="projectState", required=true)
-    br
-    
-    span Zip: 
-    input(type="text", name="projectZip", required=true)
-    br
-    
-    span Project Mangager: 
-    input(type="text", name="projectManager", required=true)
-    br
-     
-    span Email: 
-    input(type="text", name="managerEmail", required=true)
-    br
-    
-    span Phone: 
-    input(type="text", name="managerPhone", required=true)
-    br
-    
-    span Project Superindendent: 
-    input(type="text", name="projectSuper", required=true)
-    br
-    
-    span Email: 
-    input(type="text", name="superEmail", required=true)
-    br
-    
-    span Phone: 
-    input(type="text", name="superPhone", required=true)
-    br
-    
-    span Subcontrators: 
-    
-    select(name='subcontractor', multiple='')
-      for user in users
-        option(value=user.email) #{user.email} (#{user.company})
-        br
-    
-    
+          span State: 
+          input(type="text", name="projectState", required=true)
+          br
+          
+          span Zip: 
+          input(type="text", name="projectZip", required=true)
+          br
+          
+          span Project Mangager: 
+          input(type="text", name="projectManager", required=true)
+          br
+           
+          span Email: 
+          input(type="text", name="managerEmail", required=true)
+          br
+          
+          span Phone: 
+          input(type="text", name="managerPhone", required=true)
+          br
+          
+          span Project Superindendent: 
+          input(type="text", name="projectSuper", required=true)
+          br
+          
+          span Email: 
+          input(type="text", name="superEmail", required=true)
+          br
+          
+          span Phone: 
+          input(type="text", name="superPhone", required=true)
+          br
+          
+          span Subcontrators: 
+          
+          select(name='subcontractor', multiple='')
+            for user in users
+              option(value=user.email) #{user.email} (#{user.company})
+              br
+          
+          
 
-    input(type="submit")
+          input(type="submit")

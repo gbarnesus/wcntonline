@@ -16,7 +16,7 @@ router.post('/', function(req, res){
     submittalSubject: req.body.submittalSubject,
     submittalSpecification: req.body.submittalSpecification,
     responsibleContractor: req.body.responsibleContractor,
-    submittalStatus: req.body.submittalStatuss,
+    submittalStatus: req.body.submittalStatus,
     reviewer: req.body.reviewer,
     reviewDate: req.body.reviewDate,
     reviewCode: req.body.reviewCode,

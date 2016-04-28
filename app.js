@@ -13,11 +13,10 @@ var express = require('express'),
     csrf = require('csurf'),
     logger = require('morgan'),
     path = require('path'),
-    validate = require( __dirname + '/models/authentication.js'),
     User = require(__dirname + '/models/user.js');
 
 
-/// require route pages
+/// require user route pages
 var homePage = require('./routes/index'),
     dashboard = require('./routes/dashboard'),
     login = require('./routes/login'),
@@ -28,11 +27,14 @@ var homePage = require('./routes/index'),
     punchlist = require('./routes/punchlist'),
     register = require('./routes/register'),
     projectDocs = require('./routes/projectDocs'),
+    uploadDocument = require('./routes/uploadDocument'),
+
+/// require admin rout pages
     adminDashboard = require('./routes/adminDashboard'),
     createProject = require('./routes/createProject'),
     uploadRFI = require('./routes/uploadRFI'),
     uploadSubmittal = require('./routes/uploadSubmittal'),
-    uploadPunchListItem = require('./routes/uploadPunchListItem')
+    uploadPunchListItem = require('./routes/uploadPunchListItem');
 
 //connect to mongo
 mongoose.connect('mongodb://localhost/wcntOnline');
@@ -108,7 +110,7 @@ mongoose.connect('mongodb://localhost/wcntOnline');
       };
     };
 
-//set routers
+//set routers user
    app.use('/', homePage);
    app.use('/login', login);
    app.use('/dashboard', requireLogin, dashboard);
@@ -118,6 +120,8 @@ mongoose.connect('mongodb://localhost/wcntOnline');
    app.use('/submittals', requireLogin, submittals);
    app.use('/punchlist', requireLogin, punchlist);
    app.use('/projectDocs', requireLogin, projectDocs);
+   app.use('/uploadDocument', requireLogin, uploadDocument);
+//set routers admin pages
    app.use('/adminDashboard', requireAdminLogin, adminDashboard);
    app.use('/register', requireAdminLogin, register);
    app.use('/createProject', requireAdminLogin, createProject);
