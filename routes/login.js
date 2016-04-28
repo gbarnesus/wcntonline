@@ -9,7 +9,7 @@ router.get('/', function(req, res, next){
 router.post('/', function(req, res, next){
   User.findOne({email: req.body.email}, function(err, user){
       if(!user) {
-        res.render('login', {error: 'Invalid email or Password'});
+        res.render('login', {error: 'Invalid email or Password', csrfToken: req.csrfToken() });
       } else {
         if (bcrypt.compareSync(req.body.password, user.password)){
           if(user.admin === "yes"){
