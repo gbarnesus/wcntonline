@@ -1,0 +1,21 @@
+extends ./maintemplate.jade
+
+block vars
+  - var title = 'UploadDocument'
+block nav
+    #navbar.navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li 
+          a(href='/adminDashboard') Admin Dashboard
+        li
+          a(href='/Register') Register Contractor
+        li
+          a(href='/createProject') Create Project
+        li
+          a(href='/uploadDocument') Upload Document
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='/logout') Log Out
+block content
+  h1 #{status}
+  a(href=link) Submit Another
