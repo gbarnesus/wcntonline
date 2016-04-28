@@ -18,15 +18,20 @@ router.post('/', function(req, res, next){
     password : hash
   });
   user.save(function(err){
-  if(err){
-    var err = "something bad happend! Try Again!"
-    if (err === 11000) {
-      var error = "that email is allready in use"
-    }
-    res.render('register.jade', {error: error});
+    var status;
+    if(err){
+      status = "Something bad happend! Try Again!"
+      if (err.code === 11000) {
+      status = "that email is allready in use"
+
+      }
+    
+      res.render('register.jade', {status: status, csrfToken: req.csrfToken()});
+    } else {
+      status = "Account Created";
+    res.render('register', {status: status, csrfToken: req.csrfToken()});
   }
-  res.redirect('/adminDashboard');
-})
+});
 });
 
 

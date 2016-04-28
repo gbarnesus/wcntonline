@@ -19,8 +19,8 @@ block nav
 block content
   h1 Upload Document
 
-  if error
-    p ERROR: #{error}
+  if status
+    p Status: #{status}
   h2 Upload rfi
   form(method="post")
     input(type="hidden", name="_csrf", value=csrfToken)

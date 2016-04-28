@@ -10,11 +10,31 @@ block content
       // Main component for a primary marketing message or call to action
       .jumbotron
         h1 RFIs
-        p
-          | This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.
-        p To see the difference between static and fixed top navbars, just scroll.
-        p
-          a.btn.btn-lg.btn-primary(href='/projectDash', role='button') View navbar docs »
+        table(style='width:100%' border='1')
+          tr
+            th RFI Number
+            th Subject
+            th Responsible Contractor
+            th Assignee
+            th Date Initiated
+            th Date Response Due
+            th Ball in Court
+            th Schedule Impact
+            th Cost Impact
+          for rfi in rfis
+            tr  
+              td #{rfi.rfiName}
+              td #{rfi.rfiSubject}
+              td #{rfi.resonsibleContractor}
+              td #{rfi.Assignee}
+              td #{rfi.dateInitialized}
+              td #{rfi.dueDate}
+              td #{rfi.ballInCourt}
+              td #{rfi.scheduleImpact}
+              td #{rfi.costImpact}
+              
+        
+
     // /container
     //
       Bootstrap core JavaScript

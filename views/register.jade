@@ -20,8 +20,8 @@ block nav
 block content
   h1 Create an Account
 
-  if error
-    p ERROR: #{error}
+  if status
+    p STATUS: #{status}
     
   form(method="post")
     input(type="hidden", name="_csrf", value=csrfToken)
