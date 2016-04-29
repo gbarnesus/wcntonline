@@ -3,7 +3,6 @@
 var express = require('express'),
     app = express(),
     inspect = require('util').inspect,
-    Busboy = require('busboy'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     Schema = mongoose.Schema,
@@ -12,7 +11,8 @@ var express = require('express'),
     bcrypt = require('bcryptjs'),
     logger = require('morgan'),
     path = require('path'),
-    User = require(__dirname + '/models/user.js');
+    User = require(__dirname + '/models/user.js'),
+    multer = require('multer');
 
 
 /// require user route pages
@@ -43,6 +43,7 @@ mongoose.connect('mongodb://localhost/wcntOnline');
 // middleware
     app.use(express.static('public'));
     app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
     app.use(sessions({
       cookieName: 'session',
       secret: 'asdklfja329048689yhfsdmnsdlkfj9342!!^$#@',
