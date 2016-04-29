@@ -4,7 +4,7 @@ var express = require('express'),
 
 router.get('/', function(req, res){
   req.session.reset()
-  req.admin.reset()
+  req.adminSession.reset()
   res.redirect('/');
 });
 

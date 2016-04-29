@@ -1,7 +1,8 @@
 var express = require('express'),
     router = express.Router();
     DocumentUp = require(__dirname + '/../models/documentUp.js'),
-    multer = require('multer');
+    multer = require('multer'),
+    fs = require('fs');
 
 
 
@@ -13,11 +14,13 @@ router.get('/:id', function(req, res, next){
 router.post('/:id', multer({dest: './uploads/'}).single('upl'), function(req, res, next){
 console.log(req.body);
 console.log(req.file);
-res.status(204).end();
+fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.file.filename + req.file.originalname);
+req.file.filename = req.file.filename + req.file.originalname;
 
 
 
  var documentUp = new DocumentUp({
+    projectNumber: req.params.id,
     documentType: req.body.documentType,
     documentName: req.body.documentName,
     documentSubject: req.body.documentSubject,
@@ -32,11 +35,11 @@ res.status(204).end();
 
 
       }
-      res.render("uploadStatus", {status: status, link: "/createProject"})
+      res.render("uploadStatus", {status: status, link: "/uploadDocument/" + req.params.id})
     } else {
 
       status = "Document Uploaded"
-      res.render("uploadStatus", {status: status, link: "/createProject"});
+      res.render("uploadStatus", {status: status, link: "/uploadDocument/" + req.params.id});
     }
   });
 });

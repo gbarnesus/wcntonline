@@ -52,7 +52,7 @@ mongoose.connect('mongodb://localhost/wcntOnline');
     }));
 
     app.use(sessions({
-      cookieName: 'admin',
+      cookieName: 'adminSession',
       secret: 'sdfgsdjgsdfsdr4356gdfgdfg',
       duration: 30 * 60 * 1000,
       activeDuration: 5 * 60 * 1000
@@ -77,17 +77,15 @@ mongoose.connect('mongodb://localhost/wcntOnline');
       }
     });
     app.use(function(req, res, next){
-    if (req.admin && req.admin.user) {
-      User.findOne({email: req.admin.user.email}, function(err, user){
+    if (req.adminSession && req.adminSession.user) {
+      User.findOne({email: req.adminSession.user.email, admin: "yes"}, function(err, user){
         if(user) {
+          console.log("admin user");
           req.admin = user;
-          delete req.admin.password;
-          req.admin.user = req.admin;
-          res.locals.user = req.admin;
-          req.user = user;
-          delete req.user.password;
-          req.session.user = req.user;
-          res.locals.user = req.user;
+          delete req.admin.password
+          req.adminSession.user = req.admin;
+          res.locals.admin = req.admin;
+
         }
         next();
       });
@@ -97,6 +95,7 @@ mongoose.connect('mongodb://localhost/wcntOnline');
     });
     function requireLogin(req, res, next){
       if (!req.user){
+        console.log(req.user)
       res.redirect('/login' );
       } else {
           next();
@@ -104,8 +103,10 @@ mongoose.connect('mongodb://localhost/wcntOnline');
     };
     function requireAdminLogin(req, res, next){
       if (!req.admin){
+        console.log(req.adminSession)
         res.redirect('/login');
       } else {
+        console.log("pass" + req.adminSession)
         next();
       };
     };

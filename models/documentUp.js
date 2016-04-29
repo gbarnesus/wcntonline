@@ -6,9 +6,10 @@ var mongoose = require('mongoose'),
 
 var DocumentUp = mongoose.model('Document', new Schema({
   id: ObjectId,
+  projectNumber: String,
   documentType: String,
   documentName: String,
-  documentDesc: String,
+  documentSubject: String,
   documentFile: Array
 }));
 

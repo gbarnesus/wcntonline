@@ -14,10 +14,11 @@ router.post('/', function(req, res, next){
         if (bcrypt.compareSync(req.body.password, user.password)){
           if(user.admin === "yes"){
             req.session.user = user;
-            req.admin.user = user;
+            req.adminSession.user = user;
             res.redirect('/adminDashboard')
           } else {
             req.session.user = user;
+            req.adminSession.user = "";
             res.redirect('/dashboard')
           }
 
