@@ -12,7 +12,7 @@ block content
         h2.form-signin-heading Please sign in
         if error
           p ERROR: #{error}
-        input(type="hidden", name="_csrf", value=csrfToken)
+      
         label.sr-only(for='inputEmail') Email address
         input#inputEmail.form-control(type='email', placeholder='Email address',name="email" required='', autofocus='')
         label.sr-only(for='inputPassword') Password

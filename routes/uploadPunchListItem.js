@@ -7,7 +7,7 @@ var express = require('express'),
 router.get('/', function(req, res){
   Projects.find({}, function(err, projects){
     allProjects = projects
-    res.render('uploadPunchListItem', {csrfToken: req.csrfToken(), allProjects : projects});
+    res.render('uploadPunchListItem', { allProjects : projects});
   })
 
 });

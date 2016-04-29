@@ -4,7 +4,7 @@ var express = require('express'),
 
 
 router.get('/:id', function(req, res, next){
-    res.render('uploadDocument', {reqID: req.params.id, csrfToken: req.csrfToken()});
+    res.render('uploadDocument', {reqID: req.params.id});
 
 });
 

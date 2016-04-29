@@ -4,7 +4,7 @@ var express = require('express'),
 
 
 router.get('/', function(req, res, next){
-  res.render('register', {csrfToken: req.csrfToken()});
+  res.render('register');
 });
 
 router.post('/', function(req, res, next){
@@ -25,7 +25,7 @@ router.post('/', function(req, res, next){
       status = "that email is allready in use"
 
       }
-    
+
       res.render('register.jade', {status: status, csrfToken: req.csrfToken()});
     } else {
       status = "Account Created";

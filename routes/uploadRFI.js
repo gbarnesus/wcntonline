@@ -5,7 +5,7 @@ var express = require('express'),
 
 router.get('/', function(req, res){
   Projects.find({}, function(err, projects){
-    res.render('uploadRFI', {csrfToken: req.csrfToken(), allProjects : projects});
+    res.render('uploadRFI', { allProjects : projects});
   })
 
 });

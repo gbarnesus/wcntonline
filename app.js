@@ -10,7 +10,6 @@ var express = require('express'),
     ObjectId = Schema.ObjectId,
     sessions = require('client-sessions'),
     bcrypt = require('bcryptjs'),
-    csrf = require('csurf'),
     logger = require('morgan'),
     path = require('path'),
     User = require(__dirname + '/models/user.js');
@@ -59,7 +58,7 @@ mongoose.connect('mongodb://localhost/wcntOnline');
     }));
 
     app.use(logger('dev'));
-    app.use(csrf());
+
     ///validate user
     app.use(function(req, res, next){
       if (req.session && req.session.user) {

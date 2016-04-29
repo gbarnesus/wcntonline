@@ -4,12 +4,12 @@ var express = require('express'),
     bcrypt = require('bcryptjs');
 
 router.get('/', function(req, res, next){
-    res.render("login", {csrfToken: req.csrfToken()});
+    res.render("login");
 });
 router.post('/', function(req, res, next){
   User.findOne({email: req.body.email}, function(err, user){
       if(!user) {
-        res.render('login', {error: 'Invalid email or Password', csrfToken: req.csrfToken() });
+        res.render('login', {error: 'Invalid email or Password' });
       } else {
         if (bcrypt.compareSync(req.body.password, user.password)){
           if(user.admin === "yes"){
@@ -23,7 +23,7 @@ router.post('/', function(req, res, next){
 
 
         } else {
-          res.render('login.jade', {error: 'Invalid email or Password', csrfToken: req.csrfToken()});
+          res.render('login.jade', {error: 'Invalid email or Password'});
         }
       }
     })

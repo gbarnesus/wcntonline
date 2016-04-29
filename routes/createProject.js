@@ -7,7 +7,7 @@ var express = require('express'),
 router.get('/', function(req, res, next){
   User.find({}, function(err, user){
 
-      res.render('createProject', {csrfToken: req.csrfToken(), users: user});
+      res.render('createProject', {users: user});
   });
 
 });
