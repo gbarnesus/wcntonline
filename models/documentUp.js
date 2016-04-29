@@ -8,7 +8,8 @@ var DocumentUp = mongoose.model('Document', new Schema({
   id: ObjectId,
   documentType: String,
   documentName: String,
-  documentDesc: String
+  documentDesc: String,
+  documentFile: Array
 }));
 
 module.exports = DocumentUp;

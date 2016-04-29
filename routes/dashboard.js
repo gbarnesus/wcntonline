@@ -5,7 +5,7 @@ var express = require('express'),
 
 
 router.get('/', function(req, res, next){
-  console.log(req.session.user.email);
+  
   Projects.find({subcontractor: req.session.user.email}, function(err, project){
 
     res.render("dashboard" ,{projects: project})

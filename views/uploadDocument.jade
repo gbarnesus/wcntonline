@@ -11,7 +11,7 @@ block content
 
         if error
           p ERROR: #{error}
-        form(method="post")
+        form(method="post", enctype="multipart/form-data")
           
           
           Span Document Type
@@ -27,6 +27,8 @@ block content
           span Document Description: 
           input(type="text", name="documentSubject", required=true)
           br
+          
+          input(type="file" name="upl")
 
         
           input(type="submit")
