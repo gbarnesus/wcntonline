@@ -1,0 +1,34 @@
+extends ./adminTemplate.jade
+
+block vars
+
+  - var title = 'Dashboard'
+
+
+block content
+
+  
+    .container-fluid
+      // Main component for a primary marketing message or call to action
+      
+  
+      table.table.table-hover.table-striped
+        thead.thead-default.thead
+          tr
+            th Document Name
+            th Document Subject
+            th Project Number
+            th Download Link
+        tbody
+          tr(scope="row")
+            td #{document.documentName}
+            td #{document.documentSubject}
+            td #{document.projectNumber}
+            td
+             a(href="#{document.documentFile[0].destination}#{document.documentFile[0].filename}") Download
+            
+            
+
+// jQuery first, then Bootstrap JS.
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')
