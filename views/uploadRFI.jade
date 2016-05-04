@@ -8,56 +8,48 @@ block vars
 block content
     .container
       // Main component for a primary marketing message or call to action
-      .jumbotron
-        h1 Upload RFI
+      h1.m-t-3 Upload RFI
 
-        if error
-          p ERROR: #{error}
-        form(method="post")
-        
-          
-          Span Project Name:
-          select(name='projectName')
+      if error
+        p ERROR: #{error}
+      form(method="post")
+      
+        feildset.formgroup
+          label.m-t-2(for="projectName") Project:
+          select.form-control(name='projectName')
             for project in allProjects
               option(value=project.projectInfo.name) #{project.projectInfo.name}
-          br
-          span RFI Name: 
-          input(type="text", name="rfiName", required=true)
-          br
+        feildset.formgroup
+          label(for="rfiName") Name:
+          input.form-control(type="text", name="rfiName", required=true)
+        feildset.formgroup
+          label(for="rfiSubject") Subject:
+          input.form-control(type="text", name="rfiSubject", required=true)
+  
+        feildset.formgroup
+          label(for="responsibleContractor") Responsible Contractor: 
+          input.form-control(type="text", name="responsibleContractor", required=true)
+        feildset.formgroup
+          label(for="assignee") Assignee:
+          input.form-control(type="text", name="assignee", required=true)
+        feildset.formgroup
+          label(for="dateInitiated") Date Initiated:      
+          input.form-control(type="text", name="dateInitiated", required=true)
+        feildset.formgroup
+          label(for="dueDate") Due Date:
+          input.form-control(type="text", name="dueDate", required=true)
+        feildset.formgroup
+          label(for="ballInCourt") Ball in Court:
+          input.form-control(type="text", name="ballInCourt", required=true)
+        feildset.formgroup
+          label(for="scheduleImpact") Schedule Impact:
+          input.form-control(type="text", name="scheduleImpact", required=true)
+        feildset.formgroup
+          label(for="costImpact") Cost Impact:
+          input.form-control(type="text", name="costImpact", required=true)
+            
 
-          span RFI Subject: 
-          input(type="text", name="rfiSubject", required=true)
-          br
-
-          span Responsible Contractor: 
-          input(type="text", name="responsibleContractor", required=true)
-          br
-
-          span Assignee:
-          input(type="text", name="assignee", required=true)
-          br
-
-          span Date Initiated 
-          input(type="text", name="dateInitiated", required=true)
-          br
-          
-          span Due Date: 
-          input(type="text", name="dueDate", required=true)
-          br
-          
-          span Ball in Court: 
-          input(type="text", name="ballInCourt", required=true)
-          br
-           
-          span Schedule Impact: 
-          input(type="text", name="scheduleImpact", required=true)
-          br
-          
-          span Cost Impact: 
-          input(type="text", name="costImpact", required=true)
-          br    
-
-          input(type="submit")
+        input(type="submit")
           
     // /container
     //

@@ -7,41 +7,32 @@ block vars
 
 block content
     .container
-      // Main component for a primary marketing message or call to action
-      .jumbotron
-        h1 Create an Account
-
-        if status
-          p STATUS: #{status}
-          
-        form(method="post")
+      if status
+        p STATUS: #{status}
+      h1.m-t-3 Create an Account
+      form.col-md-6(method="post")
         
-
-          span First Name:
-          input(type="text", name="firstName", required=true)
+        feildset.formgroup
+          label.m-t-2(for="firstName") First Name:
+          input.form-control(type="text", name="firstName", required=true)
+        feildset.formgroup
+          label(for="lastName") Last Name:
+          input.form-control(type="text", name="lastName", required=true)
+        feildset.formgroup
+          label(for="email") Email:
+          input.form-control(type="email", name="email", required=true)
+        feildset.formgroup
+          label(for="company") Company:
+          input.form-control(type="text", name="company", required=true)
+        feildset.formgroup
+          label(for="admin") Admin:
+          input.form-control(type="text", name="admin", required=true)
+          small.text-muted Please enter "Yes" or "No"
           br
-
-          span Last Name:
-          input(type="text", name="lastName", required=true)
-          br
-
-          span Email:
-          input(type="email", name="email", required=true)
-          br
-          
-          span Company:
-          input(type="text", name="company", required=true)
-          br
-          
-          span Admin:
-          input(type="text", name="admin", required=true)
-          br
-
-          span Password:
-          input(type="password", name="password", required=true)
-          br
-
-          input(type="submit")
+        feildset.formgroup
+          label(for="company") Company:
+          input.form-control(type="tect", name="company", required=true)
+        button.btn.btn-primary.m-t-1(type='submit') Submit
     // /container
     //
       Bootstrap core JavaScript

@@ -2,27 +2,44 @@ extends ./adminTemplate.jade
 
 block vars
 
-  - var title = 'Admin Dashboard'
+  - var title = 'Dashboard'
 
-
+block nav
+  ul.nav.navbar-nav.navbar-right
+      li
+        a(href='/logout') Log Out
 block content
-    .container
+
+  
+    .container-fluid
       // Main component for a primary marketing message or call to action
-      .jumbotron
-        h1 Admin Dashboard
-        p
-          | This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.
-        p To see the difference between static and fixed top navbars, just scroll.
-        p
-          a.btn.btn-lg.btn-primary(href='/projectDash', role='button') Project Dashboard »
-    // /container
-    //
-      Bootstrap core JavaScript
-      ==================================================
-    // Placed at the end of the document so the pages load faster
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
-    script.
-      window.jQuery || document.write('<script src="/js/jquery.min.js"><\\/script>')
-    script(src='/js/bootstrap.min.js')
-    // IE10 viewport hack for Surface/desktop Windows 8 bug
-    script(src='/js/ie10-viewport-bug-workaround.js')
+      
+      h1 All Projects
+      table(class="table table-hover table-striped")
+        thead.thead-default
+          tr
+            th Name
+            th Number
+            th Address
+            th.hidden-xs-down Project Manager 
+            th.hidden-sm-down Email 
+            th.hidden-xs-down Phone
+            th.hidden-md-down Project Superintendent
+            th.hidden-md-down.hidden-lg-down Email 
+            th.hidden-md-down Phone
+        tbody
+          for project in projects
+            tr(scope="row")
+              td #{project.projectInfo.name}  
+              td #{project.projectInfo.number}
+              td 18041 Daryl Ln SW Rochester, WA 98579
+              td.hidden-xs-down #{project.projectTeam.projectManager.name}
+              td.hidden-sm-down #{project.projectTeam.projectManager.email}
+              td.hidden-xs-down #{project.projectTeam.projectManager.phone}
+              td.hidden-md-down #{project.projectTeam.projectSuperindendent.name}
+              td.hidden-md-down.hidden-lg-down #{project.projectTeam.projectSuperindendent.email}
+              td.hidden-md-down #{project.projectTeam.projectSuperindendent.phone}
+
+// jQuery first, then Bootstrap JS.
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')
