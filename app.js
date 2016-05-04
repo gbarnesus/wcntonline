@@ -33,7 +33,8 @@ var homePage = require('./routes/index'),
     createProject = require('./routes/createProject'),
     uploadRFI = require('./routes/uploadRFI'),
     uploadSubmittal = require('./routes/uploadSubmittal'),
-    uploadPunchListItem = require('./routes/uploadPunchListItem');
+    uploadPunchListItem = require('./routes/uploadPunchListItem'),
+    uploadedFiles = require('./routes/uploadedFiles');
 
 //connect to mongo
 mongoose.connect('mongodb://localhost/wcntOnline');
@@ -41,7 +42,8 @@ mongoose.connect('mongodb://localhost/wcntOnline');
     app.set('view engine', 'jade');
     app.set('views', path.join(__dirname, 'views'));
 // middleware
-    app.use(express.static('public'));
+    app.use( express.static('public'));
+    app.use('/uploads',express.static('uploads'));
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.use(sessions({
@@ -128,7 +130,8 @@ mongoose.connect('mongodb://localhost/wcntOnline');
    app.use('/createProject', requireAdminLogin, createProject);
    app.use('/uploadRFI', requireAdminLogin, uploadRFI);
    app.use('/uploadSubmittal', requireAdminLogin, uploadSubmittal);
-   app.use('/uploadPunchListItem', requireAdminLogin, uploadPunchListItem);
+   app.use('/uploadPunchListItem', requireAdminLogin, uploadPunchListItem)
+   app.use('/uploadedFiles', requireAdminLogin, uploadedFiles);
 
 
     app.listen(3000, function(){
