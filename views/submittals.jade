@@ -1,4 +1,4 @@
-extends ./template.jade
+extends ./projectNavigation.jade
 
 block vars
   - var title = 'Project Dashboard'
@@ -6,11 +6,10 @@ block vars
 block content
 
   
-    .container
-      // Main component for a primary marketing message or call to action
-      .jumbotron
-        h1 Submittals
-        table(style='width:100%' border='1')
+    .container-fluid
+      h1.m-t-3 Submittals
+      table.table.table-hover.table-striped
+        thead
           tr
             th Submittal Number
             th Subject
@@ -20,25 +19,20 @@ block content
             th Reviewer
             th Review Date
             th Review Code
+        tbody
           for submittal in submittals
-            tr  
-              td #{submittal.submittalNumber}
-              td #{submittal.submittalSubject}
-              td #{submittal.submittalSpecification}
-              td #{submittal.responsibleContractor}
-              td #{submittal.submittalStatus}
-              td #{submittal.reviewer}
-              td #{submittal.reviewDate}
-              td #{submittal.reviewCode}
-            
+            tr(scope="row")  
+            td #{submittal.submittalNumber}
+            td #{submittal.submittalSubject}
+            td #{submittal.submittalSpecification}
+            td #{submittal.responsibleContractor}
+            td #{submittal.submittalStatus}
+            td #{submittal.reviewer}
+            td #{submittal.reviewDate}
+            td #{submittal.reviewCode}
+          
     // /container
     //
-      Bootstrap core JavaScript
-      ==================================================
-    // Placed at the end of the document so the pages load faster
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
-    script.
-      window.jQuery || document.write('<script src="/js/jquery.min.js"><\\/script>')
-    script(src='/js/bootstrap.min.js')
-    // IE10 viewport hack for Surface/desktop Windows 8 bug
-    script(src='/js/ie10-viewport-bug-workaround.js')
+    // jQuery first, then Bootstrap JS.
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')

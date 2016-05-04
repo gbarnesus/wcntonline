@@ -1,0 +1,20 @@
+extends ./maintemplate.jade
+
+block vars
+
+  - var title = 'Dashboard'
+  
+block nav
+  nav.navbar.navbar-dark.bg-primary
+    .container-fluid
+      .nav.navbar-nav
+        a.nav-item.nav-link(href='/dashboard') Dashboard
+        a.nav-item.nav-link(href='/projectDash/' + reqID) Project Information
+        a.nav-item.nav-link(href='/submittals/'+ reqID) Submittals
+        a.nav-item.nav-link(href='/rfi/'+ reqID) RFI's
+        a.nav-item.nav-link(href='/punchlist/'+ reqID) Punch List
+        a.nav-item.nav-link(href='/projectDocs/'+ reqID) Project Plans/Specs
+        a.nav-item.nav-link.pull-xs-right(href='/logout/') Log Out
+
+  block content
+    

@@ -1,4 +1,4 @@
-extends ./template.jade
+extends ./projectNavigation.jade
 
 block vars
   - var title = 'Project Dashboard'
@@ -6,47 +6,36 @@ block vars
 block content
 
   
-    .container
-      // Main component for a primary marketing message or call to action
-      .jumbotron
-        h1 #{projects.projectInfo.name}
-        h2 Project Info
-        table(style='width:100%' border='1')
-          tr
-            th Project Name
-            th Project Number
-            th address
-            th city
-            th state
-            th zip
-            th Project Manager 
-            th Email 
-            th Phone
-            th Project Superintendent
-            th Email 
-            th Phone
-          tr
-          td #{projects.projectInfo.name}
-          td #{projects.projectInfo.number}
-          td #{projects.projectInfo.address}
-          td #{projects.projectInfo.city}
-          td #{projects.projectInfo.state}
-          td #{projects.projectInfo.zip}
-          td #{projects.projectTeam.projectManager.name}
-          td #{projects.projectTeam.projectManager.email}
-          td #{projects.projectTeam.projectManager.phone}
-          td #{projects.projectTeam.projectSuperindendent.name}
-          td #{projects.projectTeam.projectSuperindendent.email}
-          td #{projects.projectTeam.projectSuperindendent.phone} 
+  
+  .container-fluid
+    h1 #{project.projectInfo.name}
+    table.table.table-hover.table-striped
+      thead.thead-default
+        tr
+          th Project Name
+          th Project Number
+          th Address
+          th Project Manager 
+          th Email 
+          th Phone
+          th Project Superintendent
+          th Email 
+          th Phone
+      tbody
+        tr(scope="row")
+          td 
+            a(href='/projectDash/'+project.projectInfo.number) #{project.projectInfo.name}
+          td #{project.projectInfo.number}
+          td 18041 Daryl Ln SW Rochester, WA 98579
+          td #{project.projectTeam.projectManager.name}
+          td #{project.projectTeam.projectManager.email}
+          td #{project.projectTeam.projectManager.phone}
+          td #{project.projectTeam.projectSuperindendent.name}
+          td #{project.projectTeam.projectSuperindendent.email}
+          td #{project.projectTeam.projectSuperindendent.phone}
           
     // /container
     //
-      Bootstrap core JavaScript
-      ==================================================
-    // Placed at the end of the document so the pages load faster
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
-    script.
-      window.jQuery || document.write('<script src="/js/jquery.min.js"><\\/script>')
-    script(src='/js/bootstrap.min.js')
-    // IE10 viewport hack for Surface/desktop Windows 8 bug
-    script(src='/js/ie10-viewport-bug-workaround.js')
+    // jQuery first, then Bootstrap JS.
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')

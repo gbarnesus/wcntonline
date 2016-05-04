@@ -5,7 +5,8 @@ var express = require('express'),
 
 router.get('/:id', function(req, res){
 Project.findOne({"projectInfo.number": req.params.id}, function(err, project){
-res.render('projectDash', {projects: project, reqID: req.params.id});
+
+res.render('projectDash', {project: project, reqID: req.params.id});
 
 })
 });
