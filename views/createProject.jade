@@ -6,74 +6,60 @@ block vars
 
 block content
     .container
-      // Main component for a primary marketing message or call to action
-      .jumbotron
-        h1 Create a Project
+    
+        h1.m-t-3 Create a Project
 
         if error
           p ERROR: #{error}
 
-        form(method="post")
-      
-
-          span Project Name: 
-          input(type="text", name="projectName", required=true)
-          br
-
-          span Project Number: 
-          input(type="text", name="projectNumber", required=true)
-          br
-
-          span Project Address: 
-          input(type="text", name="projectAddress", required=true)
-          br
-
-          span City: 
-          input(type="text", name="projectCity", required=true)
-          br
-
-          span State: 
-          input(type="text", name="projectState", required=true)
-          br
-          
-          span Zip: 
-          input(type="text", name="projectZip", required=true)
-          br
-          
-          span Project Mangager: 
-          input(type="text", name="projectManager", required=true)
-          br
-           
-          span Email: 
-          input(type="text", name="managerEmail", required=true)
-          br
-          
-          span Phone: 
-          input(type="text", name="managerPhone", required=true)
-          br
-          
-          span Project Superindendent: 
-          input(type="text", name="projectSuper", required=true)
-          br
-          
-          span Email: 
-          input(type="text", name="superEmail", required=true)
-          br
-          
-          span Phone: 
-          input(type="text", name="superPhone", required=true)
-          br
-          
-          span Subcontrators: 
-          
-          select(name='subcontractor', multiple='')
-            for user in users
-              option(value=user.email) #{user.email} (#{user.company})
-              br
-          
+        form.col-md-6(method="post")
+          feildset.formgroup
+            label.m-t-2(for="projectName") Project Name:
+            input.form-control(type="text", name="projectName", required=true)
+            
+          feildset.formgroup
+            label(for="projectNumber") Project Number:
+            input.form-control(type="text", name="projectNumber", required=true)
+          feildset.formgroup
+            label(for="projectAddress") Project Adrees:
+            input.form-control(type="text", name="projectAddress", required=true)
+          feildset.formgroup
+            label(for="projectCity") City:
+            input.form-control(type="text", name="projectCity", required=true)
+          feildset.formgroup
+            label(for="projectState") State:
+            input.form-control(type="text", name="projectState", required=true)
+          feildset.formgroup
+            label(for="projectZip") Zip:
+            input.form-control(type="text", name="projectZip", required=true)
+          feildset.formgroup
+            label(for="projectManager") Project Manager:
+            input.form-control(type="text", name="projectManager", required=true)
+          feildset.formgroup
+            label(for="managerEmail") Email:
+            input.form-control(type="text", name="managerEmail", required=true)
+          feildset.formgroup
+            label(for="managerPhone") Phone:
+            input.form-control(type="text", name="managerPhone", required=true)
+          feildset.formgroup
+            label(for="projectSuper") Project Superindendent:
+            input.form-control(type="text", name="projectSuper", required=true)
+          feildset.formgroup
+            label(for="superEmail") Email:
+            input.form-control(type="text", name="superEmail", required=true)
+          feildset.formgroup
+            label(for="superPhone") Phone:
+            input.form-control(type="text", name="superPhone", required=true)
+          feildset.formgroup
+            label(for="subcontractor") Subcontractors:
+            select.form-control(name='subcontractor', multiple='')
+              for user in users
+                option(value=user.email) #{user.email} (#{user.company})
+                  
+        
           
 
-          input(type="submit")
+          button.btn.btn-primary.m-t-1(type="submit") Submit
   // /container
   //
     Bootstrap core JavaScript

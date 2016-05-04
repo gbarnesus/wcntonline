@@ -8,47 +8,41 @@ block vars
 block content
     .container
       // Main component for a primary marketing message or call to action
-      .jumbotron
+      
   
-          h1 Upload Punchlist Item
+      h1.m-t-3 Upload Punchlist Item
 
-          if status
-            p Status: #{status}
-          form(method="post")
-            
-            
-            Span Project Name:
-            select(name='projectName')
+      if status
+        p Status: #{status}
+      form(method="post")
+        feildset.formgroup
+          label.m-t-2(for="projectName") Project:
+          select.form-control(name='projectName')
               for project in allProjects
                 option(value=project.projectInfo.name) #{project.projectInfo.name}
-                br
-            br    
-            span Item Number: 
-            input(type="text", name="itemNumber", required=true)
-            br
-
-            span Description: 
-            input(type="text", name="punchDescription", required=true)
-            br
-
-            span Creation Date: 
-            input(type="text", name="creationDate", required=true)
-            br
-
-            span Responsible Contractor:
-            input(type="text", name="responsibleContractor", required=true)
-            br
-
-            span Due Date: 
-            input(type="text", name="dueDate", required=true)
-            br
-            
-            span Status: 
-            input(type="text", name="punchStatus", required=true)
-            br
-            
-            
-            input(type="submit")
+        feildset.formgroup
+          label(for="itemNumber") Number:  
+          input.form-control(type="text", name="itemNumber", required=true)
+        feildset.formgroup
+          label(for="punchDescription") Description:  
+          input.form-control(type="text", name="punchDescription", required=true)
+        feildset.formgroup
+          label(for="creationDate") Creation Date:
+          input.form-control(type="text", name="creationDate", required=true)
+        feildset.formgroup
+          label(for="responsibleContractor") Responsible Contractor:
+          input.form-control(type="text", name="responsibleContractor", required=true)
+      
+        feildset.formgroup
+          label(for="dueDate") Due Date:  
+          input.form-control(type="text", name="dueDate", required=true)
+        feildset.formgroup
+          label(for="punchStatus") Punch Status:
+          input.form-control(type="text", name="punchStatus", required=true)
+        
+        
+        
+        button.btn.btn-primary.m-t-2(type="submit") Submit
     // /container
     //
       Bootstrap core JavaScript
