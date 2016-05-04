@@ -12,7 +12,7 @@ block content
 
       if error
         p ERROR: #{error}
-      form(method="post")
+      form(method="post" enctype="multipart/form-data")
       
         feildset.formgroup
           label.m-t-2(for="projectName") Project:
@@ -47,9 +47,14 @@ block content
         feildset.formgroup
           label(for="costImpact") Cost Impact:
           input.form-control(type="text", name="costImpact", required=true)
+        fieldset.formgroup
+          label(for="submittals") File Upload
+          input.form-control-file(type="file" name="rfiUpload")
+          small.text-muted Upload Submittal Documents Here
+          br
             
 
-        input(type="submit")
+        button.btn.btn-primary.m-t-1(type="submit") Submit
           
     // /container
     //

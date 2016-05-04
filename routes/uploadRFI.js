@@ -1,5 +1,7 @@
 var express = require('express'),
     router = express.Router(),
+    multer = require('multer'),
+    fs = require('fs'),
     Projects = require(__dirname + '/../models/project.js');
 
 
@@ -10,7 +12,9 @@ router.get('/', function(req, res){
 
 });
 
-router.post('/', function(req, res){
+router.post('/', multer({dest: './uploads/'}).single('rfiUpload'), function(req, res){
+  fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.file.filename + req.file.originalname);
+req.file.filename = req.file.filename + req.file.originalname;
   var rfi = {
     rfiName: req.body.rfiName,
     rfiSubject: req.body.rfiSubject,
@@ -21,6 +25,7 @@ router.post('/', function(req, res){
     ballInCourt: req.body.ballInCourt,
     scheduleImpact: req.body.scheduleImpact,
     costImpact: req.body.costImpact,
+    rfiFile: req.file
   }
   console.log(req.body.projectName)
   Projects.update({"projectInfo.name": req.body.projectName}, {$push: {"rfiData" : rfi}}, function(err, project){

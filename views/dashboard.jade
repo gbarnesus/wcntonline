@@ -3,9 +3,16 @@ extends ./maintemplate.jade
 block vars
 
   - var title = 'Dashboard'
+  
+block nav 
+  nav.navbar.navbar-dark.bg-primary
+    .container-fluid
+      .nav.navbar-nav        
+        a.nav-item.nav-link.pull-xs-right(href='/logout/') Log Out
 
 
 block dashboard
+  
 
   
     .container-fluid
@@ -34,7 +41,7 @@ block dashboard
             td #{project.projectTeam.projectManager.phone}
             td #{project.projectTeam.projectSuperindendent.name}
             td #{project.projectTeam.projectSuperindendent.email}
-            td #{project.projectTeam.projectSuperindendent.phone}
+            td #{project.projectTeam.projectSuperindendent.phone}")
 
     // /container
     //

@@ -11,7 +11,7 @@ block content
       h1.m-t-3 Upload Submittal
       if error
         p ERROR: #{error}
-      form(method="post")
+      form(method="post" enctype="multipart/form-data")
         feildset.formgroup
           label.m-t-2(for="projectName") Project:
           select.form-control(name='projectName')
@@ -41,6 +41,11 @@ block content
         feildset.formgroup
           label(for="reviewCode") Review Code:
           input.form-control(type="text", name="reviewCode", required=true)
+        fieldset.formgroup
+          label(for="submittals") File Upload
+          input.form-control-file(type="file" name="submittalUpload")
+          small.text-muted Upload Submittal Documents Here
+          br
       
           button.btn.btn-primary.m-t-1(type="submit") Submit
     // /container

@@ -19,6 +19,7 @@ block content
             th Reviewer
             th Review Date
             th Review Code
+            th Download
         tbody
           for submittal in submittals
             tr(scope="row")  
@@ -30,6 +31,9 @@ block content
             td #{submittal.reviewer}
             td #{submittal.reviewDate}
             td #{submittal.reviewCode}
+            if submittal.submittalFile
+              td
+                a(href="../#{submittal.submittalFile.destination}#{submittal.submittalFile.filename}") Download
           
     // /container
     //

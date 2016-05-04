@@ -1,5 +1,7 @@
 var express = require('express'),
     router = express.Router(),
+    multer = require('multer'),
+    fs = require('fs'),
     Projects = require(__dirname + '/../models/project.js'),
     allProjects;
 
@@ -12,7 +14,9 @@ router.get('/', function(req, res){
 
 });
 
-router.post('/', function(req, res){
+router.post('/', multer({dest: './uploads/'}).single('punchlistUpload'), function(req, res){
+  fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.file.filename + req.file.originalname);
+req.file.filename = req.file.filename + req.file.originalname;
   var punchListItem = {
     itemNumber: req.body.itemNumber,
     punchDescription: req.body.punchDescription,
@@ -21,6 +25,7 @@ router.post('/', function(req, res){
     responsibleContractor: req.body.responsibleContractor,
     dueDate: req.body.dueDate,
     punchStatus: req.body.punchStatus,
+    punchlistFile: req.file
 
   }
 

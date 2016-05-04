@@ -12,7 +12,7 @@ block content
         if error
           p ERROR: #{error}
 
-        form.col-md-6(method="post")
+        form.col-md-6(method="post" enctype="multipart/form-data")
           feildset.formgroup
             label.m-t-2(for="projectName") Project Name:
             input.form-control(type="text", name="projectName", required=true)

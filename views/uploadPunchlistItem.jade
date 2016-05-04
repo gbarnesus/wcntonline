@@ -14,7 +14,7 @@ block content
 
       if status
         p Status: #{status}
-      form(method="post")
+      form(method="post" enctype="multipart/form-data")
         feildset.formgroup
           label.m-t-2(for="projectName") Project:
           select.form-control(name='projectName')
@@ -39,6 +39,11 @@ block content
         feildset.formgroup
           label(for="punchStatus") Punch Status:
           input.form-control(type="text", name="punchStatus", required=true)
+        fieldset.formgroup
+          label(for="submittals") File Upload
+          input.form-control-file(type="file" name="punchlistUpload")
+          small.text-muted Upload Submittal Documents Here
+          br
         
         
         

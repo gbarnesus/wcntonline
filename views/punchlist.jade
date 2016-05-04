@@ -18,6 +18,7 @@ block content
             th Creation Date
             th Due Date
             th Status
+            th Download
         tbody
           for punchlist in punchlists
             tr(scope="row")
@@ -27,6 +28,9 @@ block content
               td #{punchlist.creationDate}
               td #{punchlist.dueDate}
               td #{punchlist.punchStatus}
+              if punchlist.punchlistFile
+                td
+                  a(href="../#{punchlist.punchlistFile.destination}#{punchlist.punchlistFile.filename}") Download
   // /container
   // jQuery first, then Bootstrap JS.
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')

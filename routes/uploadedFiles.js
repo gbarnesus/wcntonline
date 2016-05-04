@@ -7,7 +7,6 @@ var express = require('express'),
 router.get('/', function(req, res, next){
  DocumentUp.findOne({}, function(err, documentUp){
    res.render("uploadedFiles", {document: documentUp})
-   console.log()
 
 });
 });

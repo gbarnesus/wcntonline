@@ -20,6 +20,7 @@ block content
               th Ball in Court
               th Schedule Impact
               th Cost Impact
+              th Download
           tbody
             for rfi in rfis
               tr(scope=row)  
@@ -32,6 +33,9 @@ block content
                 td #{rfi.ballInCourt}
                 td #{rfi.scheduleImpact}
                 td #{rfi.costImpact}
+                if rfi.rfiFile
+                  td
+                    a(href="../#{rfi.rfiFile.destination}#{rfi.rfiFile.filename}") Download
               
         
 

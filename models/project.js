@@ -30,6 +30,8 @@ var Project = mongoose.model('Project', new Schema({
       rfiData : Array,
       submittals: Array,
       punchlist: Array,
+      plans: Array,
+      specs: Array
 
 
 

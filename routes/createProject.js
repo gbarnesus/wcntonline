@@ -13,6 +13,8 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
+  fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.file.filename + req.file.originalname);
+  req.file.filename = req.file.filename + req.file.originalname;
   var project = new Project({
     projectInfo: {
       name: req.body.projectName,
@@ -38,6 +40,7 @@ router.post('/', function(req, res, next){
     rfiData: [],
     submittals: [],
     punchlist: []
+
   });
   project.save(function(err){
     var status;
