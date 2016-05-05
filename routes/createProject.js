@@ -1,5 +1,7 @@
 var express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    multer = require('multer'),
+    fs = require('fs'),
     Project = require(__dirname + '/../models/project.js'),
     User = require(__dirname + '/../models/user.js');
 
@@ -12,9 +14,19 @@ router.get('/', function(req, res, next){
 
 });
 
-router.post('/', function(req, res, next){
-  fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.file.filename + req.file.originalname);
-  req.file.filename = req.file.filename + req.file.originalname;
+router.post('/', multer({dest: './uploads/'}).fields([{name: 'plans'}, {name: "specs"}]), function(req, res, next){
+  fs.mkdir('./uploads/' + req.body.projectNumber);
+  fs.mkdir('./uploads/' + req.body.projectNumber + "/submittals");
+  fs.mkdir('./uploads/' + req.body.projectNumber + "/rfis");
+  fs.mkdir('./uploads/' + req.body.projectNumber + "/punchlists");
+  fs.mkdir('./uploads/' + req.body.projectNumber + "/subUploads");
+  fs.mkdir('./uploads/' + req.body.projectNumber+ "/plans-specs");
+
+  fs.rename('./uploads/'+ req.files.plans[0].filename, './uploads/' + req.body.projectNumber + "/plans-specs/" + req.files.plans[0].filename + "plans.pdf");
+  fs.rename('./uploads/'+ req.files.specs[0].filename, './uploads/' + req.body.projectNumber + "/plans-specs/" + req.files.specs[0].filename + "specs.pdf");
+
+
+
   var project = new Project({
     projectInfo: {
       name: req.body.projectName,
@@ -39,7 +51,9 @@ router.post('/', function(req, res, next){
     subcontractor: req.body.subcontractor,
     rfiData: [],
     submittals: [],
-    punchlist: []
+    punchlist: [],
+    plans: req.files.plans,
+    specs: req.files.specs
 
   });
   project.save(function(err){

@@ -13,10 +13,10 @@ block content
         p ERROR: #{error}
       form(method="post" enctype="multipart/form-data")
         feildset.formgroup
-          label.m-t-2(for="projectName") Project:
-          select.form-control(name='projectName')
+          label.m-t-2(for="projectNumber") Project:
+          select.form-control(name='projectNumber')
             for project in allProjects
-              option(value=project.projectInfo.name) #{project.projectInfo.name}
+              option(value=project.projectInfo.number) #{project.projectInfo.number} - #{project.projectInfo.name}
         feildset.formgroup
           label(for="submittalNumber") Number:
           input.form-control(type="text", name="submittalNumber", required=true)

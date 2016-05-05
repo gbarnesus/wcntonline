@@ -21,11 +21,12 @@ block content
             th Download Link
         tbody
           tr(scope="row")
-            td #{document.documentName}
-            td #{document.documentSubject}
-            td #{document.projectNumber}
-            td
-             a(href="#{document.documentFile[0].destination}#{document.documentFile[0].filename}") Download
+            for doc in docs
+              td #{doc.documentName}
+              td #{doc.documentSubject}
+              td #{doc.projectNumber}
+              td
+                a(href="../uploads/#{doc.projectNumber}/subUploads/#{doc.documentFile[0].filename}") Download
             
             
 

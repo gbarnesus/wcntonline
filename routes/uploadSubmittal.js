@@ -13,7 +13,7 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', multer({dest: './uploads/'}).single('submittalUpload'), function(req, res, next){
-  fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.file.filename + req.file.originalname);
+  fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber + "/submittals/" + req.file.filename + req.file.originalname);
 req.file.filename = req.file.filename + req.file.originalname;
   var submittal = {
 
@@ -29,7 +29,7 @@ req.file.filename = req.file.filename + req.file.originalname;
 
   }
 
-  Projects.update({"projectInfo.name": req.body.projectName}, {$push: {"submittals" : submittal}}, function(err, project){
+  Projects.update({"projectInfo.number": req.body.projectNumber}, {$push: {"submittals" : submittal}}, function(err, project){
     var status;
     if(err){
       status = "Something bad happend! Try Again!"

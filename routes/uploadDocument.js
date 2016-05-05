@@ -12,9 +12,8 @@ router.get('/:id', function(req, res, next){
 });
 
 router.post('/:id', multer({dest: './uploads/'}).single('upl'), function(req, res, next){
-console.log(req.body);
-console.log(req.file);
-fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.file.filename + req.file.originalname);
+
+fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.params.id + "/subUploads/"+ req.file.filename + req.file.originalname);
 req.file.filename = req.file.filename + req.file.originalname;
 
 

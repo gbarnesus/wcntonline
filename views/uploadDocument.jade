@@ -6,33 +6,38 @@ block vars
 block content
     .container
       // Main component for a primary marketing message or call to action
-      .jumbotron
-        h1 Upload RFI
 
-        if error
-          p ERROR: #{error}
-        form(method="post", enctype="multipart/form-data")
-          
-          
-          Span Document Type
-          select(name='documentType')
-              option(value="submittal") Submittal
-              option(value="rfi") RFI
-              option(value="other") Other
-          br
-          span Document Name: 
-          input(type="text", name="documentName", required=true)
-          br
+      h1 Upload RFI
 
-          span Document Description: 
-          input(type="text", name="documentSubject", required=true)
-          br
-          
-          input(type="file" name="upl")
-
+      if error
+        p ERROR: #{error}
+      form.col-sm-6(method="post", enctype="multipart/form-data")
         
-          input(type="submit")
+        
+        feildset.formgroup
+          label.m-t-2(for="documentType") Document Type:
+          select.form-control(name='documentType')
+            option(value="submittal") Submittal
+            option(value="rfi") RFI
+            option(value="other") Other
+        
+        feildset.formgroup
+          label(for="documentName") Document Name: 
+          input.form-control(type="text", name="documentName", required=true)
+        
 
+        feildset.formgroup
+          label(for="documentSubject") Document Description: 
+          input.form-control(type="text", name="documentSubject", required=true)
+      
+        feildset.formgroup
+          label(for="upl") File Upload
+          input.form-control-file(type="file" name="upl")
+          small.text-muted Upload Submittal Documents Here
+          br
+      
+        button.btn.btn-primary.m-t-1(type="submit") Submit
+ 
     // /container
     //
       Bootstrap core JavaScript

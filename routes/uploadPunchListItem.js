@@ -15,7 +15,7 @@ router.get('/', function(req, res){
 });
 
 router.post('/', multer({dest: './uploads/'}).single('punchlistUpload'), function(req, res){
-  fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.file.filename + req.file.originalname);
+fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber + "/punchlists/" + req.file.filename + req.file.originalname);
 req.file.filename = req.file.filename + req.file.originalname;
   var punchListItem = {
     itemNumber: req.body.itemNumber,
@@ -29,7 +29,7 @@ req.file.filename = req.file.filename + req.file.originalname;
 
   }
 
-  Projects.update({"projectInfo.name": req.body.projectName}, {$push: {"punchlist" : punchListItem}}, function(err, project){
+  Projects.update({"projectInfo.number": req.body.projectNumber}, {$push: {"punchlist" : punchListItem}}, function(err, project){
     var status;
     if(err){
       status = "Something bad happend! Try Again!"

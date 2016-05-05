@@ -55,7 +55,17 @@ block content
             select.form-control(name='subcontractor', multiple='')
               for user in users
                 option(value=user.email) #{user.email} (#{user.company})
-                  
+          fieldset.formgroup
+            label(for="submittals") Plans Upload
+            input.form-control-file(type="file" name="plans")
+            small.text-muted Upload the project plans here
+            br
+          fieldset.formgroup
+            label(for="submittals") Specs Upload
+            input.form-control-file(type="file" name="specs")
+            small.text-muted Upload the project specifications here
+            br
+                
         
           
 

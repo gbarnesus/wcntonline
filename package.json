@@ -4,8 +4,10 @@
   "description": "Wcnt online project mangagment system.",
   "main": "app.js",
   "scripts": {
-    "test": "none"
+    "test": "none",
+      "start": "node app.js"
   },
+
   "repository": {
     "type": "git",
     "url": "none"

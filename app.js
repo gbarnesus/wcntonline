@@ -25,7 +25,6 @@ var homePage = require('./routes/index'),
     submittals = require('./routes/submittals'),
     punchlist = require('./routes/punchlist'),
     register = require('./routes/register'),
-    projectDocs = require('./routes/projectDocs'),
     uploadDocument = require('./routes/uploadDocument'),
 
 /// require admin rout pages
@@ -122,7 +121,6 @@ mongoose.connect('mongodb://localhost/wcntOnline');
    app.use('/rfi', requireLogin, rfi);
    app.use('/submittals', requireLogin, submittals);
    app.use('/punchlist', requireLogin, punchlist);
-   app.use('/projectDocs', requireLogin, projectDocs);
    app.use('/uploadDocument', requireLogin, uploadDocument);
 //set routers admin pages
    app.use('/adminDashboard', requireAdminLogin, adminDashboard);

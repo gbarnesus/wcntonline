@@ -21,18 +21,22 @@ block content
           th Project Superintendent
           th Email 
           th Phone
+          th Download
       tbody
         tr(scope="row")
           td 
             a(href='/projectDash/'+project.projectInfo.number) #{project.projectInfo.name}
           td #{project.projectInfo.number}
-          td 18041 Daryl Ln SW Rochester, WA 98579
+          td #{project.projectInfo.address}
           td #{project.projectTeam.projectManager.name}
           td #{project.projectTeam.projectManager.email}
           td #{project.projectTeam.projectManager.phone}
           td #{project.projectTeam.projectSuperindendent.name}
           td #{project.projectTeam.projectSuperindendent.email}
           td #{project.projectTeam.projectSuperindendent.phone}
+          td 
+            a(href="../uploads/#{project.projectInfo.number}/plans-specs/#{project.plans[0].filename}plans.pdf") Plans 
+            a(href="../uploads/#{project.projectInfo.number}/plans-specs/#{project.specs[0].filename}specs.pdf") Specs
           
     // /container
     //
