@@ -3,6 +3,11 @@ extends ./adminTemplate.jade
 block vars
 
   - var title = 'Dashboard'
+  
+block nav
+  a.nav-item.nav-link(href='/adminDashboard') Admin Dashboard
+  a.nav-item.nav-link(href='/Register') Register Contractor
+  a.nav-item.nav-link(href='/createProject') Create Project
 
 
 block content
@@ -27,7 +32,8 @@ block content
         tbody
           for project in projects
             tr(scope="row")
-              td #{project.projectInfo.name}  
+              td 
+                a(href="/adminProjects/#{project.projectInfo.number}") #{project.projectInfo.name}  
               td #{project.projectInfo.number}
               td #{project.projectInfo.address}
               td.hidden-xs-down #{project.projectTeam.projectManager.name}

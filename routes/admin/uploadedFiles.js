@@ -1,6 +1,6 @@
 var express = require('express'),
     router = express.Router(),
-    DocumentUP = require(__dirname + '/../models/documentUp.js');
+    DocumentUP = require(__dirname + '../../../models/documentUp.js');
 
 
 

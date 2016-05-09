@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router();
-    Project = require(__dirname + '/../models/project.js'),
-    Punchlist = require(__dirname + '/../models/punchlist.js')
+    Project = require(__dirname + '../../../models/project.js'),
+    Punchlist = require(__dirname + '../../../models/punchlist.js')
 
 
     router.get('/:id', function(req, res){

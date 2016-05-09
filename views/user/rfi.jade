@@ -1,0 +1,46 @@
+extends ./projectNavigation.jade
+
+block vars
+  - var title = 'Project Dashboard'
+
+block content
+
+  
+    .container-fluid
+        h1 RFIs
+        table.table.table-hover.table-striped
+          thead
+            tr
+              th RFI Number
+              th Subject
+              th Responsible Contractor
+              th Assignee
+              th Date Initiated
+              th Date Response Due
+              th Ball in Court
+              th Schedule Impact
+              th Cost Impact
+              th Download
+          tbody
+            for rfi in rfis
+              tr(scope=row)  
+                td #{rfi.rfiName}
+                td #{rfi.rfiSubject}
+                td #{rfi.responsibleContractor}
+                td #{rfi.assignee}
+                td #{rfi.dateInitiated}
+                td #{rfi.dueDate}
+                td #{rfi.ballInCourt}
+                td #{rfi.scheduleImpact}
+                td #{rfi.costImpact}
+                for files in rfi.rfiFile
+                  td 
+                      a(href="../uploads/#{reqID}/rfis/#{files.filename}") Download
+              
+        
+
+    // /container
+    //
+    // jQuery first, then Bootstrap JS.
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')

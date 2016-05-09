@@ -2,8 +2,8 @@ var express = require('express'),
     router = express.Router(),
     multer = require('multer'),
     fs = require('fs'),
-    Projects = require(__dirname + '/../models/project.js'),
-    Submittal = require(__dirname + '/../models/submittal.js')
+    Projects = require(__dirname + '../../../models/project.js'),
+    Submittal = require(__dirname + '../../../models/submittal.js')
 
 
 router.get('/', function(req, res, next){

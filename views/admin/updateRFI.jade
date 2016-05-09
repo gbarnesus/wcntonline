@@ -1,0 +1,68 @@
+extends ./adminTemplate.jade
+
+block vars
+
+  - var title = 'Admin Dashboard'
+
+
+block content
+    .container
+      // Main component for a primary marketing message or call to action
+      h1.m-t-3 Upload RFI
+
+      if error
+        p ERROR: #{error}
+      for rfi in rfis
+        h1 #{rfi.rfiName}
+        form(method="post" enctype="multipart/form-data")
+          input(type="hidden" name="_id" value=rfi._id)
+          input(type="hidden" name="projectNumber" value=reqID)
+        
+          feildset.formgroup
+            label(for="rfiName") Name:
+            input.form-control(type="text", name="rfiName",value=rfi.rfiName, required=true)
+          feildset.formgroup
+            label(for="rfiSubject") Subject:
+            input.form-control(type="text", name="rfiSubject",value=rfi.rfiSubject, required=true)
+    
+          feildset.formgroup
+            label(for="responsibleContractor") Responsible Contractor: 
+            input.form-control(type="text", name="responsibleContractor",value=rfi.responsibleContractor, required=true)
+          feildset.formgroup
+            label(for="assignee") Assignee:
+            input.form-control(type="text", name="assignee",value=rfi.assignee, required=true)
+          feildset.formgroup
+            label(for="dateInitiated") Date Initiated:      
+            input.form-control(type="text", name="dateInitiated",value=rfi.dateInitiated, required=true)
+          feildset.formgroup
+            label(for="dueDate") Due Date:
+            input.form-control(type="text", name="dueDate",value=rfi.dueDate, required=true)
+          feildset.formgroup
+            label(for="ballInCourt") Ball in Court:
+            input.form-control(type="text", name="ballInCourt", value=rfi.ballInCourt, required=true)
+          feildset.formgroup
+            label(for="scheduleImpact") Schedule Impact:
+            input.form-control(type="text", name="scheduleImpact",value=rfi.scheduleImpact, required=true)
+          feildset.formgroup
+            label(for="costImpact") Cost Impact:
+            input.form-control(type="text", name="costImpact",value=rfi.costImpact, required=true)
+          fieldset.formgroup
+            label(for="submittals") File Upload
+            input.form-control-file(type="file" name="rfiUpload")
+            small.text-muted Upload Submittal Documents Here
+            br
+              
+
+          button.btn.btn-primary.m-t-1(type="submit") Submit
+          
+    // /container
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script.
+      window.jQuery || document.write('<script src="/js/jquery.min.js"><\\/script>')
+    script(src='/js/bootstrap.min.js')
+    // IE10 viewport hack for Surface/desktop Windows 8 bug
+    script(src='/js/ie10-viewport-bug-workaround.js')

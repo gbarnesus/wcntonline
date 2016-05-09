@@ -16,30 +16,33 @@ var express = require('express'),
 
 
 /// require user route pages
-var homePage = require('./routes/index'),
-    dashboard = require('./routes/dashboard'),
+var homePage = require('./routes/user/index'),
+    dashboard = require('./routes/user/dashboard'),
     login = require('./routes/login'),
     logout = require('./routes/logout'),
-    projectDash = require('./routes/projectDash'),
-    rfi = require('./routes/rfi'),
-    submittals = require('./routes/submittals'),
-    punchlist = require('./routes/punchlist'),
-    register = require('./routes/register'),
-    uploadDocument = require('./routes/uploadDocument'),
+    projectDash = require('./routes/user/projectDash'),
+    rfi = require('./routes/user/rfi'),
+    submittals = require('./routes/user/submittals'),
+    punchlist = require('./routes/user/punchlist'),
+
+    uploadDocument = require('./routes/user/uploadDocument'),
 
 /// require admin rout pages
-    adminDashboard = require('./routes/adminDashboard'),
-    createProject = require('./routes/createProject'),
-    uploadRFI = require('./routes/uploadRFI'),
-    uploadSubmittal = require('./routes/uploadSubmittal'),
-    uploadPunchListItem = require('./routes/uploadPunchListItem'),
-    uploadedFiles = require('./routes/uploadedFiles');
+    adminDashboard = require('./routes/admin/adminDashboard'),
+    createProject = require('./routes/admin/createProject'),
+    uploadRFI = require('./routes/admin/uploadRFI'),
+    uploadSubmittal = require('./routes/admin/uploadSubmittal'),
+    uploadPunchListItem = require('./routes/admin/uploadPunchListItem'),
+    uploadedFiles = require('./routes/admin/uploadedFiles'),
+    updateRFI = require('./routes/admin/updateRFI.js'),
+    register = require('./routes/admin/register'),
+    adminProjects = require('./routes/admin/adminProjects.js');
 
 //connect to mongo
 mongoose.connect('mongodb://localhost/wcntOnline');
 // configure express
     app.set('view engine', 'jade');
-    app.set('views', path.join(__dirname, 'views'));
+    app.set('views', [__dirname + "/views",__dirname + "/views/user", __dirname + "/views/admin/"]);
 // middleware
     app.use( express.static('public'));
     app.use('/uploads',express.static('uploads'));
@@ -128,8 +131,10 @@ mongoose.connect('mongodb://localhost/wcntOnline');
    app.use('/createProject', requireAdminLogin, createProject);
    app.use('/uploadRFI', requireAdminLogin, uploadRFI);
    app.use('/uploadSubmittal', requireAdminLogin, uploadSubmittal);
-   app.use('/uploadPunchListItem', requireAdminLogin, uploadPunchListItem)
+   app.use('/uploadPunchListItem', requireAdminLogin, uploadPunchListItem);
    app.use('/uploadedFiles', requireAdminLogin, uploadedFiles);
+   app.use('/updateRFI', requireAdminLogin, updateRFI);
+   app.use('/adminProjects', requireAdminLogin, adminProjects);
 
 
     app.listen(3000, function(){

@@ -1,0 +1,43 @@
+extends ./projectNavigation.jade
+
+block vars
+  - var title = 'Project Dashboard'
+
+block content
+
+  
+    .container-fluid
+      h1.m-t-3 Submittals
+      table.table.table-hover.table-striped
+        thead
+          tr
+            th Submittal Number
+            th Subject
+            th Specification
+            th Responsible Contractor
+            th Submittal Status
+            th Reviewer
+            th Review Date
+            th Review Code
+            th Download
+        tbody
+          for submittal in submittals
+            tr(scope="row")  
+            td #{submittal.submittalNumber}
+            td #{submittal.submittalSubject}
+            td #{submittal.submittalSpecification}
+            td #{submittal.responsibleContractor}
+            td #{submittal.submittalStatus}
+            td #{submittal.reviewer}
+            td #{submittal.reviewDate}
+            td #{submittal.reviewCode}
+            if submittal.submittalFile
+              for files in submittal.submittalFile
+                td 
+                  a(href="../uploads/#{reqID}/submittals/#{files.filename}") Download
+          
+    // /container
+    //
+    // jQuery first, then Bootstrap JS.
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')

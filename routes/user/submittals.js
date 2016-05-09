@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router(),
-    Project = require(__dirname + '/../models/project.js'),
-    Submittal = require(__dirname + '/../models/submittal.js')
+    Project = require(__dirname + '../../../models/project.js'),
+    Submittal = require(__dirname + '../../../models/submittal.js')
 
 
     router.get('/:id', function(req, res){

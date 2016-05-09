@@ -2,8 +2,8 @@ var express = require('express'),
     router = express.Router(),
     multer = require('multer'),
     fs = require('fs'),
-    Projects = require(__dirname + '/../models/project.js'),
-    Punchlist = require(__dirname + '/../models/punchlist.js'),
+    Projects = require(__dirname + '../../../models/project.js'),
+    Punchlist = require(__dirname + '../../../models/punchlist.js'),
     allProjects;
 
 

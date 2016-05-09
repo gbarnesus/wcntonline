@@ -2,8 +2,8 @@ var express = require('express'),
     router = express.Router(),
     multer = require('multer'),
     fs = require('fs'),
-    Project = require(__dirname + '/../models/project.js'),
-    User = require(__dirname + '/../models/user.js');
+    Project = require(__dirname + '../../../models/project.js'),
+    User = require(__dirname + '../../../models/user.js');
 
 
 router.get('/', function(req, res, next){

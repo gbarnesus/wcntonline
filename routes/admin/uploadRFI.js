@@ -2,8 +2,8 @@ var express = require('express'),
     router = express.Router(),
     multer = require('multer'),
     fs = require('fs'),
-    Projects = require(__dirname + '/../models/project.js'),
-    Rfi = require(__dirname + '/../models/rfi.js');
+    Projects = require(__dirname + '../../../models/project.js'),
+    Rfi = require(__dirname + '../../../models/rfi.js');
 
 
 router.get('/', function(req, res){
