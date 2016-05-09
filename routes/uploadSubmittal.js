@@ -2,7 +2,8 @@ var express = require('express'),
     router = express.Router(),
     multer = require('multer'),
     fs = require('fs'),
-    Projects = require(__dirname + '/../models/project.js');
+    Projects = require(__dirname + '/../models/project.js'),
+    Submittal = require(__dirname + '/../models/submittal.js')
 
 
 router.get('/', function(req, res, next){
@@ -15,8 +16,8 @@ router.get('/', function(req, res, next){
 router.post('/', multer({dest: './uploads/'}).single('submittalUpload'), function(req, res, next){
   fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber + "/submittals/" + req.file.filename + req.file.originalname);
 req.file.filename = req.file.filename + req.file.originalname;
-  var submittal = {
-
+  var submittal = new Submittal( {
+    projectNumber: req.body.projectNumber,
     submittalNumber: req.body.submittalNumber,
     submittalSubject: req.body.submittalSubject,
     submittalSpecification: req.body.submittalSpecification,
@@ -27,9 +28,9 @@ req.file.filename = req.file.filename + req.file.originalname;
     reviewCode: req.body.reviewCode,
     submittalFile: req.file
 
-  }
+  });
 
-  Projects.update({"projectInfo.number": req.body.projectNumber}, {$push: {"submittals" : submittal}}, function(err, project){
+submittal.save(function(err){
     var status;
     if(err){
       status = "Something bad happend! Try Again!"

@@ -33,9 +33,9 @@ block content
                 td #{rfi.ballInCourt}
                 td #{rfi.scheduleImpact}
                 td #{rfi.costImpact}
-                if rfi.rfiFile
-                  td
-                    a(href="../uploads/#{reqID}/rfis/#{rfi.rfiFile.filename}") Download
+                for files in rfi.rfiFile
+                  td 
+                      a(href="../uploads/#{reqID}/rfis/#{files.filename}") Download
               
         
 

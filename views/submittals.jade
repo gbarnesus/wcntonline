@@ -32,8 +32,9 @@ block content
             td #{submittal.reviewDate}
             td #{submittal.reviewCode}
             if submittal.submittalFile
-              td
-                a(href="../uploads/#{reqID}/submittals/#{submittal.submittalFile.filename}") Download
+              for files in submittal.submittalFile
+                td 
+                  a(href="../uploads/#{reqID}/submittals/#{files.filename}") Download
           
     // /container
     //

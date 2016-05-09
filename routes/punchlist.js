@@ -1,12 +1,13 @@
 var express = require('express'),
     router = express.Router();
-    Project = require(__dirname + '/../models/project.js');
+    Project = require(__dirname + '/../models/project.js'),
+    Punchlist = require(__dirname + '/../models/punchlist.js')
 
 
     router.get('/:id', function(req, res){
-        Project.findOne({"projectInfo.number": req.params.id}, function(err, project){
+        Punchlist.find({"projectNumber": req.params.id}, function(err, punchlist){
 
-        res.render('punchlist', {punchlists: project.punchlist, reqID: req.params.id});
+        res.render('punchlist', {punchlists: punchlist, reqID: req.params.id});
 
       });
       });

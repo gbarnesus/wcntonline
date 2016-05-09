@@ -3,6 +3,7 @@ var express = require('express'),
     multer = require('multer'),
     fs = require('fs'),
     Projects = require(__dirname + '/../models/project.js'),
+    Punchlist = require(__dirname + '/../models/punchlist.js'),
     allProjects;
 
 
@@ -17,7 +18,8 @@ router.get('/', function(req, res){
 router.post('/', multer({dest: './uploads/'}).single('punchlistUpload'), function(req, res){
 fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber + "/punchlists/" + req.file.filename + req.file.originalname);
 req.file.filename = req.file.filename + req.file.originalname;
-  var punchListItem = {
+  var punchListItem = new Punchlist({
+    projectNumber: req.body.projectNumber,
     itemNumber: req.body.itemNumber,
     punchDescription: req.body.punchDescription,
     responsibleContractor: req.body.responsibleContractor,
@@ -27,9 +29,9 @@ req.file.filename = req.file.filename + req.file.originalname;
     punchStatus: req.body.punchStatus,
     punchlistFile: req.file
 
-  }
+  });
 
-  Projects.update({"projectInfo.number": req.body.projectNumber}, {$push: {"punchlist" : punchListItem}}, function(err, project){
+  punchListItem.save(function(err){
     var status;
     if(err){
       status = "Something bad happend! Try Again!"

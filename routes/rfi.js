@@ -1,11 +1,11 @@
 var express = require('express'),
     router = express.Router(),
-    Project = require(__dirname + '/../models/project.js');
+    Project = require(__dirname + '/../models/project.js'),
+    Rfi = require(__dirname + '/../models/rfi.js')
 
 router.get('/:id', function(req, res){
-    Project.findOne({"projectInfo.number": req.params.id}, function(err, project){
-
-    res.render('rfi', {rfis: project.rfiData, reqID: req.params.id});
+    Rfi.find({"projectNumber": req.params.id}, function(err, rfi){
+    res.render('rfi', {rfis: rfi, reqID: req.params.id});
 
   });
   });

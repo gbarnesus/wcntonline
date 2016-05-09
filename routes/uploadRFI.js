@@ -2,7 +2,8 @@ var express = require('express'),
     router = express.Router(),
     multer = require('multer'),
     fs = require('fs'),
-    Projects = require(__dirname + '/../models/project.js');
+    Projects = require(__dirname + '/../models/project.js'),
+    Rfi = require(__dirname + '/../models/rfi.js');
 
 
 router.get('/', function(req, res){
@@ -19,7 +20,8 @@ fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber
 
   req.file.filename = req.file.filename + req.file.originalname;
 
-  var rfi = {
+  var rfi = new Rfi({
+    projectNumber: req.body.projectNumber,
     rfiName: req.body.rfiName,
     rfiSubject: req.body.rfiSubject,
     responsibleContractor: req.body.responsibleContractor,
@@ -30,12 +32,12 @@ fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber
     scheduleImpact: req.body.scheduleImpact,
     costImpact: req.body.costImpact,
     rfiFile: req.file
-  }
+  });
 
-  Projects.update({"projectInfo.number": req.body.projectNumber}, {$push: {"rfiData" : rfi}}, function(err, project){
+  rfi.save(function(err){
     var status;
     if(err){
-      status = "Something bad happend! Try Again!"
+      status = "Something bad happend! Try Again! " + err.message;
       res.render("uploadStatus", {status: status, link: "/uploadRFI"});
       }
 

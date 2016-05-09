@@ -27,9 +27,6 @@ var Project = mongoose.model('Project', new Schema({
         }
       },
       subcontractor: Array,
-      rfiData : Array,
-      submittals: Array,
-      punchlist: Array,
       plans: Array,
       specs: Array
 

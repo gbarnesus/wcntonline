@@ -49,9 +49,6 @@ router.post('/', multer({dest: './uploads/'}).fields([{name: 'plans'}, {name: "s
       }
     },
     subcontractor: req.body.subcontractor,
-    rfiData: [],
-    submittals: [],
-    punchlist: [],
     plans: req.files.plans,
     specs: req.files.specs
 

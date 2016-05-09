@@ -28,9 +28,9 @@ block content
               td #{punchlist.creationDate}
               td #{punchlist.dueDate}
               td #{punchlist.punchStatus}
-              if punchlist.punchlistFile
+              for files in punchlist.punchlistFile
                 td
-                  a(href="../uploads/#{reqID}/punchlists/#{punchlist.punchlistFile.filename}") Download
+                  a(href="../uploads/#{reqID}/punchlists/#{files.filename}") Download
   // /container
   // jQuery first, then Bootstrap JS.
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')

@@ -1,12 +1,13 @@
 var express = require('express'),
     router = express.Router(),
-    Project = require(__dirname + '/../models/project.js');
+    Project = require(__dirname + '/../models/project.js'),
+    Submittal = require(__dirname + '/../models/submittal.js')
 
 
     router.get('/:id', function(req, res){
-        Project.findOne({"projectInfo.number": req.params.id}, function(err, project){
+        Submittal.find({"projectNumber": req.params.id}, function(err, submittals){
 
-        res.render('submittals', {submittals: project.submittals, reqID: req.params.id});
+        res.render('submittals', {submittals: submittals, reqID: req.params.id});
 
       });
       });
