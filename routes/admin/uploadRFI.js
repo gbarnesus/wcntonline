@@ -6,17 +6,17 @@ var express = require('express'),
     Rfi = require(__dirname + '../../../models/rfi.js');
 
 
-router.get('/', function(req, res){
+router.get('/:id', function(req, res){
   Projects.find({}, function(err, projects){
     res.render('uploadRFI', { allProjects : projects});
   })
 
 });
 
-router.post('/', multer({dest: './uploads/'}).single('rfiUpload'), function(req, res){
+router.post('/:id', multer({dest: '../../uploads/'}).single('rfiUpload'), function(req, res){
 
 
-fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber + "/rfis/" + req.file.filename + req.file.originalname);
+fs.rename('../../uploads/'+ req.file.filename, '../../uploads/' + req.body.projectNumber + "/rfis/" + req.file.filename + req.file.originalname);
 
   req.file.filename = req.file.filename + req.file.originalname;
 

@@ -36,8 +36,10 @@ var homePage = require('./routes/user/index'),
     uploadedFiles = require('./routes/admin/uploadedFiles'),
     updateRFI = require('./routes/admin/updateRFI.js'),
     register = require('./routes/admin/register'),
-    adminProjects = require('./routes/admin/adminProjects.js');
-
+    adminProjects = require('./routes/admin/adminProjects.js'),
+    adminSubmittal = require('./routes/admin/adminSubmittal.js'),
+    adminRfi = require('./routes/admin/adminRfi'),
+    adminPunchlist = require('./routes/admin/adminPunchlist');
 //connect to mongo
 mongoose.connect('mongodb://localhost/wcntOnline');
 // configure express
@@ -135,6 +137,9 @@ mongoose.connect('mongodb://localhost/wcntOnline');
    app.use('/uploadedFiles', requireAdminLogin, uploadedFiles);
    app.use('/updateRFI', requireAdminLogin, updateRFI);
    app.use('/adminProjects', requireAdminLogin, adminProjects);
+   app.use('/adminSubmittals', requireAdminLogin, adminSubmittal);
+   app.use('/adminRfis', requireAdminLogin, adminRfi);
+   app.use('/adminPunchlists', requireAdminLogin, adminPunchlist);
 
 
     app.listen(3000, function(){

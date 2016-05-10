@@ -1,46 +1,45 @@
-extends ./projectNavigation.jade
+extends ./adminTemplate.jade
 
 block vars
   - var title = 'Project Dashboard'
+block nav
+  a.nav-item.nav-link(href='/adminDashboard') Admin Dashboard
+  a.nav-item.nav-link(href='/adminsubmittals/'+ reqID) Update Submittals
+  a.nav-item.nav-link(href='/adminrfis/'+ reqID) Update RFIS
+  a.nav-item.nav-link(href='/adminpunchlist/'+ reqID) Update Punchlist
+  a.nav-item.nav-link(href='/uploadSubmittal/'+ reqID) Upload Submittals
+  a.nav-item.nav-link(href='/uploadRFI/'+ reqID) Upload RFIS
+  a.nav-item.nav-link(href='/uploadPunchListItem/'+ reqID) Upload Punchlist
 
 block content
 
 
-    .container-fluid
-        h1 RFIs
-        table.table.table-hover.table-striped
-          thead
-            tr
-              th RFI Number
-              th Subject
-              th Responsible Contractor
-              th Assignee
-              th Date Initiated
-              th Date Response Due
-              th Ball in Court
-              th Schedule Impact
-              th Cost Impact
-              th Download
-          tbody
-            for rfi in rfis
-              tr(scope=row)
-                td #{rfi.rfiName}
-                td #{rfi.rfiSubject}
-                td #{rfi.responsibleContractor}
-                td #{rfi.assignee}
-                td #{rfi.dateInitiated}
-                td #{rfi.dueDate}
-                td #{rfi.ballInCourt}
-                td #{rfi.scheduleImpact}
-                td #{rfi.costImpact}
-                for files in rfi.rfiFile
-                  td
-                      a(href="../uploads/#{reqID}/rfis/#{files.filename}") Download
-
-
-
-    // /container
-    //
-    // jQuery first, then Bootstrap JS.
-      script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
-      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')
+  .container-fluid
+    // Main component for a primary marketing message or call to action
+    h1 Punchlist
+    table.table.table-hover.table-striped
+      thead.thead.thead-default
+        tr
+          th Item Number
+          th Description
+          th Responsible Contractor
+          th Creation Date
+          th Due Date
+          th Status
+          th Download
+      tbody
+        for punchlist in punchlists
+          tr(scope="row")
+            td #{punchlist.itemNumber}
+            td #{punchlist.punchDescription}
+            td #{punchlist.responsibleContractor}
+            td #{punchlist.creationDate}
+            td #{punchlist.dueDate}
+            td #{punchlist.punchStatus}
+            for files in punchlist.punchlistFile
+              td
+                a(href="../uploads/#{reqID}/punchlists/#{files.filename}") Download
+// /container
+// jQuery first, then Bootstrap JS.
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')

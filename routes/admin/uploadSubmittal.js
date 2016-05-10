@@ -6,15 +6,15 @@ var express = require('express'),
     Submittal = require(__dirname + '../../../models/submittal.js')
 
 
-router.get('/', function(req, res, next){
+router.get('/:id', function(req, res, next){
   Projects.find({}, function(err, projects){
     res.render('uploadSubmittal', {allProjects : projects});
   });
 
 });
 
-router.post('/', multer({dest: './uploads/'}).single('submittalUpload'), function(req, res, next){
-  fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber + "/submittals/" + req.file.filename + req.file.originalname);
+router.post('/:id', multer({dest: 'uploads/'}).single('submittalUpload'), function(req, res, next){
+  fs.rename('uploads/'+ req.file.filename, 'uploads/' + req.body.projectNumber + "/submittals/" + req.file.filename + req.file.originalname);
 req.file.filename = req.file.filename + req.file.originalname;
   var submittal = new Submittal( {
     projectNumber: req.body.projectNumber,

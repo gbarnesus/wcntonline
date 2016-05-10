@@ -2,7 +2,16 @@ extends ./adminTemplate.jade
 
 block vars
 
-  - var title = 'Admin Dashboard'
+  - var title = 'Dashboard'
+
+block nav
+  a.nav-item.nav-link(href='/adminDashboard') Admin Dashboard
+  a.nav-item.nav-link(href='/adminsubmittals/'+ reqID) Update Submittals
+  a.nav-item.nav-link(href='/adminrfis/'+ reqID) Update RFIS
+  a.nav-item.nav-link(href='/adminpunchlist/'+ reqID) Update Punchlist
+  a.nav-item.nav-link(href='/uploadSubmittal/'+ reqID) Upload Submittals
+  a.nav-item.nav-link(href='/uploadRFI/'+ reqID) Upload RFIS
+  a.nav-item.nav-link(href='/uploadPunchListItem/'+ reqID) Upload Punchlist
 
 
 block content
@@ -14,48 +23,45 @@ block content
         p ERROR: #{error}
       form(method="post" enctype="multipart/form-data")
       
-        feildset.formgroup
-          label.m-t-2(for="projectNumber") Project:
-          select.form-control(name='projectNumber')
-            for project in allProjects
-              option(value=project.projectInfo.number) #{project.projectInfo.number} - #{project.projectInfo.name}
-        feildset.formgroup
-          label(for="rfiName") Name:
-          input.form-control(type="text", name="rfiName", required=true)
-        feildset.formgroup
-          label(for="rfiSubject") Subject:
-          input.form-control(type="text", name="rfiSubject", required=true)
-  
-        feildset.formgroup
-          label(for="responsibleContractor") Responsible Contractor: 
-          input.form-control(type="text", name="responsibleContractor", required=true)
-        feildset.formgroup
-          label(for="assignee") Assignee:
-          input.form-control(type="text", name="assignee", required=true)
-        feildset.formgroup
-          label(for="dateInitiated") Date Initiated:      
-          input.form-control(type="text", name="dateInitiated", required=true)
-        feildset.formgroup
-          label(for="dueDate") Due Date:
-          input.form-control(type="text", name="dueDate", required=true)
-        feildset.formgroup
-          label(for="ballInCourt") Ball in Court:
-          input.form-control(type="text", name="ballInCourt", required=true)
-        feildset.formgroup
-          label(for="scheduleImpact") Schedule Impact:
-          input.form-control(type="text", name="scheduleImpact", required=true)
-        feildset.formgroup
-          label(for="costImpact") Cost Impact:
-          input.form-control(type="text", name="costImpact", required=true)
-        fieldset.formgroup
-          label(for="submittals") File Upload
-          input.form-control-file(type="file" name="rfiUpload")
-          small.text-muted Upload Submittal Documents Here
-          br
-            
+          feildset.formgroup
+            input(type="hidden", name="projectNumber" value=reqID)
+          feildset.formgroup
+            label(for="rfiName") Name:
+            input.form-control(type="text", name="rfiName", required=true)
+          feildset.formgroup
+            label(for="rfiSubject") Subject:
+            input.form-control(type="text", name="rfiSubject", required=true)
+    
+          feildset.formgroup
+            label(for="responsibleContractor") Responsible Contractor: 
+            input.form-control(type="text", name="responsibleContractor", required=true)
+          feildset.formgroup
+            label(for="assignee") Assignee:
+            input.form-control(type="text", name="assignee", required=true)
+          feildset.formgroup
+            label(for="dateInitiated") Date Initiated:      
+            input.form-control(type="text", name="dateInitiated", required=true)
+          feildset.formgroup
+            label(for="dueDate") Due Date:
+            input.form-control(type="text", name="dueDate", required=true)
+          feildset.formgroup
+            label(for="ballInCourt") Ball in Court:
+            input.form-control(type="text", name="ballInCourt", required=true)
+          feildset.formgroup
+            label(for="scheduleImpact") Schedule Impact:
+            input.form-control(type="text", name="scheduleImpact", required=true)
+          feildset.formgroup
+            label(for="costImpact") Cost Impact:
+            input.form-control(type="text", name="costImpact", required=true)
+          fieldset.formgroup
+            label(for="submittals") File Upload
+            input.form-control-file(type="file" name="rfiUpload")
+            small.text-muted Upload Submittal Documents Here
+            br
+              
 
-        button.btn.btn-primary.m-t-1(type="submit") Submit
-          
+          button.btn.btn-primary.m-t-1(type="submit") Submit
+            
     // /container
     //
       Bootstrap core JavaScript

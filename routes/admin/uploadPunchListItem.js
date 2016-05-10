@@ -7,7 +7,7 @@ var express = require('express'),
     allProjects;
 
 
-router.get('/', function(req, res){
+router.get('/:id', function(req, res){
   Projects.find({}, function(err, projects){
     allProjects = projects
     res.render('uploadPunchListItem', { allProjects : projects});
@@ -15,8 +15,8 @@ router.get('/', function(req, res){
 
 });
 
-router.post('/', multer({dest: './uploads/'}).single('punchlistUpload'), function(req, res){
-fs.rename('./uploads/'+ req.file.filename, './uploads/' + req.body.projectNumber + "/punchlists/" + req.file.filename + req.file.originalname);
+router.post('/:id', multer({dest: '../uploads/'}).single('punchlistUpload'), function(req, res){
+fs.rename('../uploads/'+ req.file.filename, '../uploads/' + req.body.projectNumber + "/punchlists/" + req.file.filename + req.file.originalname);
 req.file.filename = req.file.filename + req.file.originalname;
   var punchListItem = new Punchlist({
     projectNumber: req.body.projectNumber,

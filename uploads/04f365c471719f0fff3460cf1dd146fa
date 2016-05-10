@@ -1,0 +1,21 @@
+
+<html>
+<head>
+<title>Coin Toss Test</title>
+<link rel="stylesheet" href="css/animate.css">
+</head>
+<body>
+  <h1> The amazing coin toss app</h1>
+<img src="img/Heads.png" id="heads" />
+<img src="img/Tails.png" id="tails"/>
+<button id="button">Toss Coin</button>
+<form>
+  <input type="radio" name="whichone" id="headBet" checked> heads<br>
+  <input type="radio" name="whichone" id="tailBet"> tails<br>
+  <textarea id="betAmount">Place your wager</textarea>
+
+</form>
+<h2> Total Points: <span id="pointsAmount">0</span></h2>
+<script src="js/cointoss.js"></script>
+</body>
+</html>

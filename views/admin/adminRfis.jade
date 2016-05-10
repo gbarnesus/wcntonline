@@ -1,8 +1,15 @@
-extends ./projectNavigation.jade
+extends ./adminTemplate.jade
 
 block vars
   - var title = 'Project Dashboard'
-
+block nav
+  a.nav-item.nav-link(href='/adminDashboard') Admin Dashboard
+  a.nav-item.nav-link(href='/adminsubmittals/'+ reqID) Update Submittals
+  a.nav-item.nav-link(href='/adminrfis/'+ reqID) Update RFIS
+  a.nav-item.nav-link(href='/adminpunchlist/'+ reqID) Update Punchlist
+  a.nav-item.nav-link(href='/uploadSubmittal/'+ reqID) Upload Submittals
+  a.nav-item.nav-link(href='/uploadRFI/'+ reqID) Upload RFIS
+  a.nav-item.nav-link(href='/uploadPunchListItem/'+ reqID) Upload Punchlist
 block content
 
   

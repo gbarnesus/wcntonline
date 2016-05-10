@@ -2,7 +2,17 @@ extends ./adminTemplate.jade
 
 block vars
 
-  - var title = 'Admin Dashboard'
+  - var title = 'Dashboard'
+
+block nav
+  a.nav-item.nav-link(href='/adminDashboard') Admin Dashboard
+  a.nav-item.nav-link(href='/adminsubmittals/'+ reqID) Update Submittals
+  a.nav-item.nav-link(href='/adminrfis/'+ reqID) Update RFIS
+  a.nav-item.nav-link(href='/adminpunchlist/'+ reqID) Update Punchlist
+  a.nav-item.nav-link(href='/uploadSubmittal/'+ reqID) Upload Submittals
+  a.nav-item.nav-link(href='/uploadRFI/'+ reqID) Upload RFIS
+  a.nav-item.nav-link(href='/uploadPunchListItem/'+ reqID) Upload Punchlist
+  
 
 
 block content
@@ -15,11 +25,7 @@ block content
       if status
         p Status: #{status}
       form(method="post" enctype="multipart/form-data")
-        feildset.formgroup
-          label.m-t-2(for="projectNumber") Project:
-          select.form-control(name='projectNumber')
-            for project in allProjects
-              option(value=project.projectInfo.number) #{project.projectInfo.number} - #{project.projectInfo.name}
+        input(type="hidden", name="projectNumber" value=reqID)
         feildset.formgroup
           label(for="itemNumber") Number:  
           input.form-control(type="text", name="itemNumber", required=true)

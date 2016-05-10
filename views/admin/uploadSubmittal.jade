@@ -2,8 +2,16 @@ extends ./adminTemplate.jade
 
 block vars
 
-  - var title = 'Admin Dashboard'
+  - var title = 'Dashboard'
 
+block nav
+  a.nav-item.nav-link(href='/adminDashboard') Admin Dashboard
+  a.nav-item.nav-link(href='/adminsubmittals/'+ reqID) Update Submittals
+  a.nav-item.nav-link(href='/adminrfis/'+ reqID) Update RFIS
+  a.nav-item.nav-link(href='/adminpunchlist/'+ reqID) Update Punchlist
+  a.nav-item.nav-link(href='/uploadSubmittal/'+ reqID) Upload Submittals
+  a.nav-item.nav-link(href='/uploadRFI/'+ reqID) Upload RFIS
+  a.nav-item.nav-link(href='/uploadPunchListItem/'+ reqID) Upload Punchlist
 
 block content
     .container
@@ -12,11 +20,7 @@ block content
       if error
         p ERROR: #{error}
       form(method="post" enctype="multipart/form-data")
-        feildset.formgroup
-          label.m-t-2(for="projectNumber") Project:
-          select.form-control(name='projectNumber')
-            for project in allProjects
-              option(value=project.projectInfo.number) #{project.projectInfo.number} - #{project.projectInfo.name}
+        input(type="hidden" value=reqId name="projectNumber")
         feildset.formgroup
           label(for="submittalNumber") Number:
           input.form-control(type="text", name="submittalNumber", required=true)
@@ -47,7 +51,7 @@ block content
           small.text-muted Upload Submittal Documents Here
           br
       
-          button.btn.btn-primary.m-t-1(type="submit") Submit
+        button.btn.btn-primary.m-t-1(type="submit") Submit
     // /container
     //
       Bootstrap core JavaScript

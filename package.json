@@ -5,9 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "none",
-      "start": "node app.js"
+    "start": "node app.js"
   },
-
   "repository": {
     "type": "git",
     "url": "none"
